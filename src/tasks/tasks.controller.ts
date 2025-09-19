@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Put, Delete, Patch, Body, Param } from '@nestjs/common';
 import { TasksService } from './tasks.service';
-import type { Task } from './tasks.service';
+import { CreateTaskDto } from './dto/create-task.dto';
 
 @Controller('tasks')
 export class TasksController {
@@ -24,7 +24,9 @@ export class TasksController {
     }
 
     @Post('/')
-    createTask(@Body() task: Task) {
+    // @UsePipes(new ValidationPipe())
+    // Otra forma de usar pipes, pero es mejor hacerlo globalmente en main.ts
+    createTask(@Body() task: CreateTaskDto) {
         return this.tasksService.createTask(task);
     }
 
