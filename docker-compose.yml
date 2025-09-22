@@ -8,6 +8,5 @@ services:
       POSTGRES_USER: valpas312
       POSTGRES_PASSWORD: valpas312pass
       POSTGRES_DB: nestjsdb
-      TZ: America/Argentina/Buenos_Aires
     ports:
       - "5432:5432"
