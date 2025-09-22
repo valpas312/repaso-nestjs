@@ -1,6 +1,6 @@
-import { Controller, Get, Post, Put, Delete, Patch, Body, Param, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, ParseIntPipe } from '@nestjs/common';
 import { TasksService } from './tasks.service';
-import { CreateTaskDto } from './dto/create-task.dto';
+import type { Task } from 'generated/prisma';
 
 @Controller('tasks')
 export class TasksController {
@@ -14,35 +14,30 @@ export class TasksController {
     // constructor(private tasksService:TasksService){}
 
     @Get('/')
-    getAllTasks() {
+    async getAllTasks() {
         return `Tasks: ${this.tasksService.getTasks()}`;
     }
 
     @Get('/:id')
-    getTaskById(@Param('id', ParseIntPipe) id: number) {
+    async getTaskById(@Param('id', ParseIntPipe) id: number) {
         return this.tasksService.getTaskById(id);
     }
 
     @Post('/')
-    // @UsePipes(new ValidationPipe())
-    // Otra forma de usar pipes, pero es mejor hacerlo globalmente en main.ts
-    createTask(@Body() task: CreateTaskDto) {
+    async createTask(@Body() task: Task) {
         return this.tasksService.createTask(task);
     }
 
     @Put('/:id')
-    updateTask() {
-        return this.tasksService.updateTask();
+    async updateTask(@Param('id', ParseIntPipe) id: number, @Body() task: Partial<Omit<Task, 'id'>>) {
+        return this.tasksService.updateTask(id, task);
     }
 
     @Delete('/:id')
-    deleteTask() {
-        return this.tasksService.deleteTask();
+    async deleteTask(@Param('id', ParseIntPipe) id: number) {
+        return this.tasksService.deleteTask(id);
     }
 
-    @Patch('/:id')
-    patchTask() {
-        return this.tasksService.patchTask();
-    }
-
+    // @UsePipes(new ValidationPipe())
+    // Otra forma de usar pipes, pero es mejor hacerlo globalmente en main.ts
 }

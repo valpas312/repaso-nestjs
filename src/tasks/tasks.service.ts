@@ -22,7 +22,9 @@ export class TasksService {
     // }
 
     async getTasks(): Promise<Task[]> {
-        return this.prisma.task.findMany();
+        const tasks = await this.prisma.task.findMany();
+        console.log(tasks);
+        return tasks;
     }
 
     // getTaskById(id: number): Task | NotFoundException {
@@ -38,6 +40,7 @@ export class TasksService {
         if (!task) {
             throw new NotFoundException(`Task with id ${id} not found`);
         }
+        console.log(task);
         return task;
     };
 
@@ -48,6 +51,7 @@ export class TasksService {
     // }
 
     async createTask(task: Omit<Task, 'id'>): Promise<Task> {
+        console.log(task);
         return this.prisma.task.create({
             data: task,
         })
@@ -59,7 +63,7 @@ export class TasksService {
 
     async updateTask(id: number, task: Partial<Omit<Task, 'id'>>): Promise<Task> {
         await this.getTaskById(id); // Check if task exists
-
+        console.log(task);
         return this.prisma.task.update({
             where: { id: id },
             data: task,
@@ -72,7 +76,6 @@ export class TasksService {
 
     async deleteTask(id: number): Promise<Task> {
         await this.getTaskById(id); // Check if task exists
-
         return this.prisma.task.delete({
             where: { id: id },
         });
