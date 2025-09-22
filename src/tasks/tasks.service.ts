@@ -1,6 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Task } from 'generated/prisma';
+import { CreateTaskDto } from './dto/create-task.dto';
+import { UpdateTaskDto } from './dto/update-task.dto';
 
 // export interface Task {
 //     id: number;
@@ -14,7 +16,7 @@ export class TasksService {
 
     constructor(private prisma: PrismaService) {}
 
-    private tasks: Task[] = [];
+    // private tasks: Task[] = [];
 
     // getTasks(): Task[] {
     //     console.log(this.tasks);
@@ -50,7 +52,7 @@ export class TasksService {
     //     return `Task ${task.id} created`;
     // }
 
-    async createTask(task: Omit<Task, 'id'>): Promise<Task> {
+    async createTask(task: CreateTaskDto): Promise<Task> {
         console.log(task);
         return this.prisma.task.create({
             data: task,
@@ -61,7 +63,7 @@ export class TasksService {
     //     return 'Task updated';
     // }
 
-    async updateTask(id: number, task: Partial<Omit<Task, 'id'>>): Promise<Task> {
+    async updateTask(id: number, task: UpdateTaskDto): Promise<Task> {
         await this.getTaskById(id); // Check if task exists
         console.log(task);
         return this.prisma.task.update({

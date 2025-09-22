@@ -1,19 +1,18 @@
-import { IsString, IsBoolean, IsOptional, IsNumber, IsNotEmpty, MinLength } from 'class-validator';
+import { IsString, IsBoolean, IsNotEmpty, MinLength, MaxLength } from 'class-validator';
+import { Task } from "generated/prisma";
 
-export class CreateTaskDto {
-    @IsNumber()
-    @IsNotEmpty()
-    id: number;
-
+export class CreateTaskDto implements Omit<Task, 'id'> {
     @IsString()
     @IsNotEmpty()
-    @MinLength(2)
+    @MinLength(3)
+    @MaxLength(50)
     title: string;
 
     @IsString()
-    @IsOptional()
-    @MinLength(2)
-    description?: string;
+    @IsNotEmpty()
+    @MinLength(3)
+    @MaxLength(200)
+    description: string;
 
     @IsBoolean()
     @IsNotEmpty()

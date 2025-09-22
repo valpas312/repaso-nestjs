@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, ParseIntPipe } from '@nestjs/common';
 import { TasksService } from './tasks.service';
-import type { Task } from 'generated/prisma';
+import { CreateTaskDto } from './dto/create-task.dto';
+import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Controller('tasks')
 export class TasksController {
@@ -24,12 +25,12 @@ export class TasksController {
     }
 
     @Post('/')
-    async createTask(@Body() task: Task) {
+    async createTask(@Body() task: CreateTaskDto) {
         return this.tasksService.createTask(task);
     }
 
     @Put('/:id')
-    async updateTask(@Param('id', ParseIntPipe) id: number, @Body() task: Partial<Omit<Task, 'id'>>) {
+    async updateTask(@Param('id', ParseIntPipe) id: number, @Body() task: UpdateTaskDto) {
         return this.tasksService.updateTask(id, task);
     }
 
