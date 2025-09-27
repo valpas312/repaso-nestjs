@@ -6,6 +6,10 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
+  app.enableCors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  });
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,
     forbidNonWhitelisted: true
@@ -14,13 +18,6 @@ async function bootstrap() {
     .setTitle('Task Management API')
     .setDescription('API for managing tasks')
     .setVersion('1.0')
-    .addBearerAuth(
-      {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-      }
-    )
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

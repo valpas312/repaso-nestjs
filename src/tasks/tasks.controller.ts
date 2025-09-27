@@ -6,7 +6,6 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('tasks')
-@ApiBearerAuth('access-token')
 @UseGuards(JwtAuthGuard)
 @Controller('tasks')
 export class TasksController {
@@ -21,7 +20,7 @@ export class TasksController {
 
     @Get('/')
     async getAllTasks() {
-        return `Tasks: ${this.tasksService.getTasks()}`;
+        return this.tasksService.getTasks();
     }
 
     @Get('/:id')
