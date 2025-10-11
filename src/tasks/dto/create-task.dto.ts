@@ -17,4 +17,8 @@ export class CreateTaskDto implements Omit<Task, 'id'> {
     @IsBoolean()
     @IsNotEmpty()
     completed: boolean;
+
+    @IsString()
+    @IsNotEmpty()
+    userEmail: string;
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, ParseIntPipe, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, ParseIntPipe, UseGuards, Request } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
@@ -18,9 +18,15 @@ export class TasksController {
     // Tambien se puede hacer asi:
     // constructor(private tasksService:TasksService){}
 
+    // @Get('/')
+    // async getAllTasks() {
+    //     return this.tasksService.getTasks();
+    // }
+
     @Get('/')
-    async getAllTasks() {
-        return this.tasksService.getTasks();
+    async getAllTasks(@Request() req) {
+        const userEmail = req.user.email;
+        return this.tasksService.getTasks(userEmail);
     }
 
     @Get('/:id')
@@ -29,8 +35,9 @@ export class TasksController {
     }
 
     @Post('/')
-    async createTask(@Body() task: CreateTaskDto) {
-        return this.tasksService.createTask(task);
+    async createTask(@Body() task: CreateTaskDto, @Request() req) {
+        const userEmail = req.user.email;
+        return this.tasksService.createTask(task, userEmail);
     }
 
     @Put('/:id')
