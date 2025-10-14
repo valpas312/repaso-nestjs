@@ -1,12 +1,13 @@
-version: '3.8'
-
 services:
-  db:
+  postgres:
     image: postgres:16
-    restart: always
+    container_name: postgres_db
     environment:
       POSTGRES_USER: valpas312
       POSTGRES_PASSWORD: valpas312pass
-      POSTGRES_DB: nestjsdb
+      POSTGRES_DB: db
+      TZ: America/Argentina/Buenos_Aires
     ports:
       - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
