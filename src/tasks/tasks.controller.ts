@@ -25,8 +25,8 @@ export class TasksController {
 
     @Get('/')
     async getAllTasks(@Request() req) {
-        const userEmail = req.user['https://valenapp.dev/email'];
-        console.log('📧 EMAIL DEL USUARIO:', userEmail);
+        const userId = req.user.userId;
+        console.log('userId desde token:', userId);
     }
 
     @Get('/:id')
