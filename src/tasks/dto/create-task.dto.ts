@@ -1,7 +1,7 @@
 import { IsString, IsBoolean, IsNotEmpty, MinLength, MaxLength } from 'class-validator';
 import { Task } from "generated/prisma";
 
-export class CreateTaskDto implements Omit<Task, 'id'> {
+export class CreateTaskDto implements Omit<Task, 'id' | 'userEmail'> {
     @IsString()
     @IsNotEmpty()
     @MinLength(3)
@@ -18,7 +18,4 @@ export class CreateTaskDto implements Omit<Task, 'id'> {
     @IsNotEmpty()
     completed: boolean;
 
-    @IsString()
-    @IsNotEmpty()
-    userEmail: string;
 }

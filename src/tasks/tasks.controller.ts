@@ -5,13 +5,13 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-@ApiTags('tasks')
 @UseGuards(JwtAuthGuard)
+@ApiTags('tasks')
 @Controller('tasks')
 export class TasksController {
-    tasksService:TasksService
+    tasksService: TasksService
 
-    constructor(tasksService:TasksService){
+    constructor(tasksService: TasksService) {
         this.tasksService = tasksService
     }
 
@@ -25,8 +25,8 @@ export class TasksController {
 
     @Get('/')
     async getAllTasks(@Request() req) {
-        const userEmail = req.user.email;
-        return this.tasksService.getTasks(userEmail);
+        const userEmail = req.user['https://valenapp.dev/email'];
+        console.log('📧 EMAIL DEL USUARIO:', userEmail);
     }
 
     @Get('/:id')
@@ -36,6 +36,7 @@ export class TasksController {
 
     @Post('/')
     async createTask(@Body() task: CreateTaskDto, @Request() req) {
+        console.log('BODY RECIBIDO:', task);
         const userEmail = req.user.email;
         return this.tasksService.createTask(task, userEmail);
     }
