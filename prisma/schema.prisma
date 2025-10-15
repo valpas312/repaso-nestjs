@@ -20,5 +20,5 @@ model Task {
   title String
   description String
   completed Boolean @default(false)
-  userEmail String
+  userId String
 }
