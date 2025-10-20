@@ -23,9 +23,9 @@ export class TasksService {
     //     return this.tasks;
     // }
 
-    async getTasks(userEmail: string): Promise<Task[]> {
+    async getTasks(userId: string): Promise<Task[]> {
         const tasks = await this.prisma.task.findMany({
-            where: { userEmail: userEmail },
+            where: { userId: userId },
         });
         console.log(tasks);
         return tasks;
@@ -54,12 +54,12 @@ export class TasksService {
     //     return `Task ${task.id} created`;
     // }
 
-    async createTask(task: CreateTaskDto, userEmail: string): Promise<Task> {
+    async createTask(task: CreateTaskDto, userId: string): Promise<Task> {
         console.log(task);
         return this.prisma.task.create({
             data:{
                 ...task,
-                userEmail: userEmail
+                userId: userId
             }
         })
     }

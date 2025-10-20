@@ -26,7 +26,8 @@ export class TasksController {
     @Get('/')
     async getAllTasks(@Request() req) {
         const userId = req.user.userId;
-        console.log('userId desde token:', userId);
+        console.log(userId)
+        return this.tasksService.getTasks(userId);
     }
 
     @Get('/:id')
@@ -37,8 +38,8 @@ export class TasksController {
     @Post('/')
     async createTask(@Body() task: CreateTaskDto, @Request() req) {
         console.log('BODY RECIBIDO:', task);
-        const userEmail = req.user.email;
-        return this.tasksService.createTask(task, userEmail);
+        const userId = req.user.userId;
+        return this.tasksService.createTask(task, userId);
     }
 
     @Put('/:id')
