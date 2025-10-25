@@ -25,21 +25,28 @@ export class TasksController {
 
     @Get('/')
     async getAllTasks(@Request() req) {
-        const userId = req.user.userId;
-        console.log(userId)
-        return this.tasksService.getTasks(userId);
+        const senderId = req.user.userId;
+        console.log(senderId)
+        return this.tasksService.getTasks(senderId);
     }
 
     @Get('/:id')
-    async getTaskById(@Param('id', ParseIntPipe) id: number) {
+    async getTaskById(@Param('id') id: number) {
         return this.tasksService.getTaskById(id);
     }
 
     @Post('/')
     async createTask(@Body() task: CreateTaskDto, @Request() req) {
         console.log('BODY RECIBIDO:', task);
-        const userId = req.user.userId;
-        return this.tasksService.createTask(task, userId);
+        const senderId = req.user.userId;
+        return this.tasksService.createTask(task, senderId);
+    }
+
+    @Post('/send')
+    async sendTask(@Body() task: CreateTaskDto, @Request() req) {
+        const senderId = req.user.userId;
+        console.log(`Enviando tarea de ${senderId} a ${task.receiverId}`);
+        return this.tasksService.sendTask(task, senderId);
     }
 
     @Put('/:id')

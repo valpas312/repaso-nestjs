@@ -14,7 +14,7 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 @Injectable()
 export class TasksService {
 
-    constructor(private prisma: PrismaService) {}
+    constructor(private prisma: PrismaService) { }
 
     // private tasks: Task[] = [];
 
@@ -23,9 +23,9 @@ export class TasksService {
     //     return this.tasks;
     // }
 
-    async getTasks(userId: string): Promise<Task[]> {
+    async getTasks(senderId: string): Promise<Task[]> {
         const tasks = await this.prisma.task.findMany({
-            where: { userId: userId },
+            where: { senderId: senderId },
         });
         console.log(tasks);
         return tasks;
@@ -54,13 +54,15 @@ export class TasksService {
     //     return `Task ${task.id} created`;
     // }
 
-    async createTask(task: CreateTaskDto, userId: string): Promise<Task> {
+    async createTask(task: CreateTaskDto, senderId: string): Promise<Task> {
         console.log(task);
         return this.prisma.task.create({
-            data:{
-                ...task,
-                userId: userId
-            }
+            data: {
+                title: task.title,
+                description: task.description ?? '',
+                completed: task.completed ?? false,
+                senderId, // el creador
+            },
         })
     }
 
@@ -81,10 +83,27 @@ export class TasksService {
     //     return 'Task deleted';
     // }
 
+    async sendTask(task: CreateTaskDto, senderId: string) {
+    if (!task.receiverId) {
+      throw new Error('receiverId es obligatorio para enviar una tarea');
+    }
+
+    return this.prisma.task.create({
+      data: {
+        title: task.title,
+        description: task.description ?? '',
+        completed: false,
+        senderId,
+        receiverId: task.receiverId, // 👈 el destino
+      },
+    });
+  }
+
     async deleteTask(id: number): Promise<Task> {
         await this.getTaskById(id); // Check if task exists
         return this.prisma.task.delete({
             where: { id: id },
         });
     }
+    
 }

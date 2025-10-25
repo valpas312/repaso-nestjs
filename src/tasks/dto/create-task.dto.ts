@@ -1,21 +1,19 @@
-import { IsString, IsBoolean, IsNotEmpty, MinLength, MaxLength, IsOptional } from 'class-validator';
-import { Task } from "generated/prisma";
+import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-export class CreateTaskDto implements Omit<Task, 'id' | 'userId'> {
-    @IsString()
-    @IsNotEmpty()
-    @MinLength(3)
-    @MaxLength(50)
-    title: string;
+export class CreateTaskDto {
+  @IsString()
+  @IsNotEmpty()
+  title: string;
 
-    @IsString()
-    @IsNotEmpty()
-    @MinLength(3)
-    @MaxLength(200)
-    description: string;
+  @IsString()
+  @IsOptional()
+  description?: string;
 
-    @IsBoolean()
-    @IsOptional()
-    completed: boolean = false;
+  @IsBoolean()
+  @IsOptional()
+  completed?: boolean = false;
 
+  @IsString()
+  @IsOptional()
+  receiverId?: string; // el id del usuario destino (Auth0 sub)
 }
