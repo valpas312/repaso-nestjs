@@ -32,6 +32,7 @@ model Task {
 model User {
   id             String  @id // será el sub de Auth0
   email          String?
+  name           String?
 
   sentTasks      Task[]  @relation("SentTasks")
   receivedTasks  Task[]  @relation("ReceivedTasks")
