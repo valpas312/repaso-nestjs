@@ -3,6 +3,8 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { Task } from 'generated/prisma';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
+import { UsersService } from 'src/users/users.service';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
 
 // export interface Task {
 //     id: number;
@@ -14,7 +16,10 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 @Injectable()
 export class TasksService {
 
-    constructor(private prisma: PrismaService) { }
+    constructor(
+        private prisma: PrismaService,
+        private usersService: UsersService
+    ) { }
 
     // private tasks: Task[] = [];
 
@@ -23,9 +28,14 @@ export class TasksService {
     //     return this.tasks;
     // }
 
-    async getTasks(senderId: string): Promise<Task[]> {
+    async getTasks(senderData: CreateUserDto): Promise<Task[]> {
+
+        const user = await this.usersService.findOrCreateUser(senderData);
+
+        console.log(senderData, "USUARIO ENCONTRADO/CREADO:");
+
         const tasks = await this.prisma.task.findMany({
-            where: { senderId: senderId },
+            where: { senderId: user.id },
         });
         console.log(tasks);
         return tasks;
@@ -54,14 +64,17 @@ export class TasksService {
     //     return `Task ${task.id} created`;
     // }
 
-    async createTask(task: CreateTaskDto, senderId: string): Promise<Task> {
+    async createTask(task: CreateTaskDto, senderData: CreateUserDto): Promise<Task> {
+
+        const user = await this.usersService.findOrCreateUser(senderData);
+
         console.log(task);
         return this.prisma.task.create({
             data: {
                 title: task.title,
                 description: task.description ?? '',
                 completed: task.completed ?? false,
-                senderId, // el creador
+                senderId: user.id, // el creador
             },
         })
     }

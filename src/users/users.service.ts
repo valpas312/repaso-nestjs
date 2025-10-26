@@ -9,13 +9,12 @@ export class UsersService {
   constructor(private prisma: PrismaService) {}
 
   async findOrCreateUser(userData: CreateUserDto) {
+    console.log(userData, "FIND OR CREATE USER:");
     return this.prisma.user.upsert({
-      where: { id: userData.id },
+      where: { id: userData.userId },
       update: {},
       create: {
-        id: userData.id,
-        email: userData.email,
-        name: userData.name,
+        id: userData.userId,
       },
     });
   }
