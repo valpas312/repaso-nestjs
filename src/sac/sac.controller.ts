@@ -12,10 +12,10 @@ export class SacController {
     return this.sacService.create(createSacDto);
   }
 
-  @Get()
-  findAll() {
-    return this.sacService.findAll();
-  }
+  // @Get()
+  // findAll() {
+  //   return this.sacService.findAll();
+  // }
 
   @Get('')
   findOne(@Query('codigo') codigo: string) {
