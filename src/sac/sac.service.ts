@@ -1,20 +1,36 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateSacDto } from './dto/create-sac.dto';
 import { UpdateSacDto } from './dto/update-sac.dto';
+import { FraslePrismaService } from 'src/prisma/frasle/frasle.service';
 
 @Injectable()
 export class SacService {
+
+  constructor(
+          private prisma: FraslePrismaService,
+      ) { }
+
   create(createSacDto: CreateSacDto) {
     return 'This action adds a new sac';
   }
 
-  findAll() {
-    return `This action returns all sac`;
+  findAll(limit = 100) {
+    return this.prisma.frasle.findMany({
+      take: limit,
+      orderBy: { codigo: 'asc' },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} sac`;
-  }
+  async findOne(codigo: string){
+          const pastilla = await this.prisma.frasle.findUnique({
+              where: { codigo: codigo },
+          });
+          if (!pastilla) {
+              throw new NotFoundException(`Pastilla with id ${codigo} not found`);
+          }
+          console.log(pastilla);
+          return pastilla;
+      };
 
   update(id: number, updateSacDto: UpdateSacDto) {
     return `This action updates a #${id} sac`;

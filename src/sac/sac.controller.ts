@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { SacService } from './sac.service';
 import { CreateSacDto } from './dto/create-sac.dto';
 import { UpdateSacDto } from './dto/update-sac.dto';
@@ -17,9 +17,9 @@ export class SacController {
     return this.sacService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.sacService.findOne(+id);
+  @Get('')
+  findOne(@Query('codigo') codigo: string) {
+    return this.sacService.findOne(codigo);
   }
 
   @Patch(':id')

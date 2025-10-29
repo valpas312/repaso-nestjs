@@ -1,0 +1,15 @@
+generator frasleClient {
+  provider = "prisma-client-js"
+  output   = "../generated/frasle"
+}
+
+datasource frasle {
+  provider = "postgresql"
+  url      = env("DATABASE_URL_SAC")
+}
+
+model frasle {
+  codigo      String  @id
+  descripcion String?
+  precio      Float
+}
