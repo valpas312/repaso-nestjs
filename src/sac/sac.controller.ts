@@ -7,19 +7,19 @@ import { UpdateSacDto } from './dto/update-sac.dto';
 export class SacController {
   constructor(private readonly sacService: SacService) {}
 
-  @Post()
-  create(@Body() createSacDto: CreateSacDto) {
-    return this.sacService.create(createSacDto);
+  @Get('/todoFrasle')
+  findAll() {
+    return this.sacService.findAllFrasle();
   }
 
-  // @Get()
-  // findAll() {
-  //   return this.sacService.findAll();
-  // }
+  @Get('/todoMazfren')
+  findAllMazfren() {
+    return this.sacService.findAllMazfren();
+  }
 
-  @Get('')
-  findOne(@Query('codigo') codigo: string) {
-    return this.sacService.findOne(codigo);
+  @Get()
+  findOne(@Query('codigo') term: string) {
+    return this.sacService.search(term);
   }
 
   @Patch(':id')
