@@ -96,7 +96,15 @@ exports.Prisma.MazfrenScalarFieldEnum = {
   codigo: 'codigo',
   descripcion: 'descripcion',
   precio: 'precio',
-  imagen: 'imagen'
+  imagen: 'imagen',
+  categoria: 'categoria'
+};
+
+exports.Prisma.FrasleScalarFieldEnum = {
+  codigo: 'codigo',
+  descripcion: 'descripcion',
+  precio: 'precio',
+  categoria: 'categoria'
 };
 
 exports.Prisma.SortOrder = {
@@ -116,7 +124,8 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  mazfren: 'mazfren'
+  mazfren: 'mazfren',
+  frasle: 'frasle'
 };
 /**
  * Create the Client
@@ -166,13 +175,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator frasleClient {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/mazfren\"\n}\n\ndatasource frasle {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL_SAC\")\n}\n\nmodel mazfren {\n  codigo      String  @id @frasle.VarChar(10)\n  descripcion String\n  precio      Decimal @frasle.Decimal(12, 2)\n  imagen      String?\n}\n",
-  "inlineSchemaHash": "be5e090e81797c35efd9bb499e4a45d69f824a9c4fac66c37d72d76109b1238e",
+  "inlineSchema": "generator frasleClient {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/mazfren\"\n}\n\ndatasource frasle {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL_SAC\")\n}\n\nmodel mazfren {\n  codigo      String  @id @frasle.VarChar(10)\n  descripcion String\n  precio      Decimal @frasle.Decimal(12, 2)\n  imagen      String?\n  categoria   String? @frasle.VarChar(100)\n}\n\nmodel frasle {\n  codigo      String  @id @frasle.VarChar(50)\n  descripcion String\n  precio      Decimal @frasle.Decimal(12, 2)\n  categoria   String? @frasle.VarChar(100)\n}\n",
+  "inlineSchemaHash": "6790d162ee73817447eb956ce4599e803ae507f09ef742d276456427b39d4a02",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"mazfren\":{\"fields\":[{\"name\":\"codigo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"descripcion\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"precio\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"imagen\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"mazfren\":{\"fields\":[{\"name\":\"codigo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"descripcion\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"precio\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"imagen\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"categoria\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"frasle\":{\"fields\":[{\"name\":\"codigo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"descripcion\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"precio\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"categoria\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

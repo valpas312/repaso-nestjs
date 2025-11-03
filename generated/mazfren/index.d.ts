@@ -18,6 +18,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type mazfren = $Result.DefaultSelection<Prisma.$mazfrenPayload>
+/**
+ * Model frasle
+ * 
+ */
+export type frasle = $Result.DefaultSelection<Prisma.$fraslePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -146,6 +151,16 @@ export class PrismaClient<
     * ```
     */
   get mazfren(): Prisma.mazfrenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.frasle`: Exposes CRUD operations for the **frasle** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Frasles
+    * const frasles = await prisma.frasle.findMany()
+    * ```
+    */
+  get frasle(): Prisma.frasleDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -587,7 +602,8 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    mazfren: 'mazfren'
+    mazfren: 'mazfren',
+    frasle: 'frasle'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -606,7 +622,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "mazfren"
+      modelProps: "mazfren" | "frasle"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -681,6 +697,80 @@ export namespace Prisma {
           count: {
             args: Prisma.mazfrenCountArgs<ExtArgs>
             result: $Utils.Optional<MazfrenCountAggregateOutputType> | number
+          }
+        }
+      }
+      frasle: {
+        payload: Prisma.$fraslePayload<ExtArgs>
+        fields: Prisma.frasleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.frasleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$fraslePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.frasleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$fraslePayload>
+          }
+          findFirst: {
+            args: Prisma.frasleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$fraslePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.frasleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$fraslePayload>
+          }
+          findMany: {
+            args: Prisma.frasleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$fraslePayload>[]
+          }
+          create: {
+            args: Prisma.frasleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$fraslePayload>
+          }
+          createMany: {
+            args: Prisma.frasleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.frasleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$fraslePayload>[]
+          }
+          delete: {
+            args: Prisma.frasleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$fraslePayload>
+          }
+          update: {
+            args: Prisma.frasleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$fraslePayload>
+          }
+          deleteMany: {
+            args: Prisma.frasleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.frasleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.frasleUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$fraslePayload>[]
+          }
+          upsert: {
+            args: Prisma.frasleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$fraslePayload>
+          }
+          aggregate: {
+            args: Prisma.FrasleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFrasle>
+          }
+          groupBy: {
+            args: Prisma.frasleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FrasleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.frasleCountArgs<ExtArgs>
+            result: $Utils.Optional<FrasleCountAggregateOutputType> | number
           }
         }
       }
@@ -781,6 +871,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     mazfren?: mazfrenOmit
+    frasle?: frasleOmit
   }
 
   /* Types for Logging */
@@ -886,6 +977,7 @@ export namespace Prisma {
     descripcion: string | null
     precio: Decimal | null
     imagen: string | null
+    categoria: string | null
   }
 
   export type MazfrenMaxAggregateOutputType = {
@@ -893,6 +985,7 @@ export namespace Prisma {
     descripcion: string | null
     precio: Decimal | null
     imagen: string | null
+    categoria: string | null
   }
 
   export type MazfrenCountAggregateOutputType = {
@@ -900,6 +993,7 @@ export namespace Prisma {
     descripcion: number
     precio: number
     imagen: number
+    categoria: number
     _all: number
   }
 
@@ -917,6 +1011,7 @@ export namespace Prisma {
     descripcion?: true
     precio?: true
     imagen?: true
+    categoria?: true
   }
 
   export type MazfrenMaxAggregateInputType = {
@@ -924,6 +1019,7 @@ export namespace Prisma {
     descripcion?: true
     precio?: true
     imagen?: true
+    categoria?: true
   }
 
   export type MazfrenCountAggregateInputType = {
@@ -931,6 +1027,7 @@ export namespace Prisma {
     descripcion?: true
     precio?: true
     imagen?: true
+    categoria?: true
     _all?: true
   }
 
@@ -1025,6 +1122,7 @@ export namespace Prisma {
     descripcion: string
     precio: Decimal
     imagen: string | null
+    categoria: string | null
     _count: MazfrenCountAggregateOutputType | null
     _avg: MazfrenAvgAggregateOutputType | null
     _sum: MazfrenSumAggregateOutputType | null
@@ -1051,6 +1149,7 @@ export namespace Prisma {
     descripcion?: boolean
     precio?: boolean
     imagen?: boolean
+    categoria?: boolean
   }, ExtArgs["result"]["mazfren"]>
 
   export type mazfrenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1058,6 +1157,7 @@ export namespace Prisma {
     descripcion?: boolean
     precio?: boolean
     imagen?: boolean
+    categoria?: boolean
   }, ExtArgs["result"]["mazfren"]>
 
   export type mazfrenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1065,6 +1165,7 @@ export namespace Prisma {
     descripcion?: boolean
     precio?: boolean
     imagen?: boolean
+    categoria?: boolean
   }, ExtArgs["result"]["mazfren"]>
 
   export type mazfrenSelectScalar = {
@@ -1072,9 +1173,10 @@ export namespace Prisma {
     descripcion?: boolean
     precio?: boolean
     imagen?: boolean
+    categoria?: boolean
   }
 
-  export type mazfrenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"codigo" | "descripcion" | "precio" | "imagen", ExtArgs["result"]["mazfren"]>
+  export type mazfrenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"codigo" | "descripcion" | "precio" | "imagen" | "categoria", ExtArgs["result"]["mazfren"]>
 
   export type $mazfrenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "mazfren"
@@ -1084,6 +1186,7 @@ export namespace Prisma {
       descripcion: string
       precio: Prisma.Decimal
       imagen: string | null
+      categoria: string | null
     }, ExtArgs["result"]["mazfren"]>
     composites: {}
   }
@@ -1511,6 +1614,7 @@ export namespace Prisma {
     readonly descripcion: FieldRef<"mazfren", 'String'>
     readonly precio: FieldRef<"mazfren", 'Decimal'>
     readonly imagen: FieldRef<"mazfren", 'String'>
+    readonly categoria: FieldRef<"mazfren", 'String'>
   }
     
 
@@ -1878,6 +1982,1022 @@ export namespace Prisma {
 
 
   /**
+   * Model frasle
+   */
+
+  export type AggregateFrasle = {
+    _count: FrasleCountAggregateOutputType | null
+    _avg: FrasleAvgAggregateOutputType | null
+    _sum: FrasleSumAggregateOutputType | null
+    _min: FrasleMinAggregateOutputType | null
+    _max: FrasleMaxAggregateOutputType | null
+  }
+
+  export type FrasleAvgAggregateOutputType = {
+    precio: Decimal | null
+  }
+
+  export type FrasleSumAggregateOutputType = {
+    precio: Decimal | null
+  }
+
+  export type FrasleMinAggregateOutputType = {
+    codigo: string | null
+    descripcion: string | null
+    precio: Decimal | null
+    categoria: string | null
+  }
+
+  export type FrasleMaxAggregateOutputType = {
+    codigo: string | null
+    descripcion: string | null
+    precio: Decimal | null
+    categoria: string | null
+  }
+
+  export type FrasleCountAggregateOutputType = {
+    codigo: number
+    descripcion: number
+    precio: number
+    categoria: number
+    _all: number
+  }
+
+
+  export type FrasleAvgAggregateInputType = {
+    precio?: true
+  }
+
+  export type FrasleSumAggregateInputType = {
+    precio?: true
+  }
+
+  export type FrasleMinAggregateInputType = {
+    codigo?: true
+    descripcion?: true
+    precio?: true
+    categoria?: true
+  }
+
+  export type FrasleMaxAggregateInputType = {
+    codigo?: true
+    descripcion?: true
+    precio?: true
+    categoria?: true
+  }
+
+  export type FrasleCountAggregateInputType = {
+    codigo?: true
+    descripcion?: true
+    precio?: true
+    categoria?: true
+    _all?: true
+  }
+
+  export type FrasleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which frasle to aggregate.
+     */
+    where?: frasleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of frasles to fetch.
+     */
+    orderBy?: frasleOrderByWithRelationInput | frasleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: frasleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` frasles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` frasles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned frasles
+    **/
+    _count?: true | FrasleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FrasleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FrasleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FrasleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FrasleMaxAggregateInputType
+  }
+
+  export type GetFrasleAggregateType<T extends FrasleAggregateArgs> = {
+        [P in keyof T & keyof AggregateFrasle]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFrasle[P]>
+      : GetScalarType<T[P], AggregateFrasle[P]>
+  }
+
+
+
+
+  export type frasleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: frasleWhereInput
+    orderBy?: frasleOrderByWithAggregationInput | frasleOrderByWithAggregationInput[]
+    by: FrasleScalarFieldEnum[] | FrasleScalarFieldEnum
+    having?: frasleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FrasleCountAggregateInputType | true
+    _avg?: FrasleAvgAggregateInputType
+    _sum?: FrasleSumAggregateInputType
+    _min?: FrasleMinAggregateInputType
+    _max?: FrasleMaxAggregateInputType
+  }
+
+  export type FrasleGroupByOutputType = {
+    codigo: string
+    descripcion: string
+    precio: Decimal
+    categoria: string | null
+    _count: FrasleCountAggregateOutputType | null
+    _avg: FrasleAvgAggregateOutputType | null
+    _sum: FrasleSumAggregateOutputType | null
+    _min: FrasleMinAggregateOutputType | null
+    _max: FrasleMaxAggregateOutputType | null
+  }
+
+  type GetFrasleGroupByPayload<T extends frasleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FrasleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FrasleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FrasleGroupByOutputType[P]>
+            : GetScalarType<T[P], FrasleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type frasleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    codigo?: boolean
+    descripcion?: boolean
+    precio?: boolean
+    categoria?: boolean
+  }, ExtArgs["result"]["frasle"]>
+
+  export type frasleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    codigo?: boolean
+    descripcion?: boolean
+    precio?: boolean
+    categoria?: boolean
+  }, ExtArgs["result"]["frasle"]>
+
+  export type frasleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    codigo?: boolean
+    descripcion?: boolean
+    precio?: boolean
+    categoria?: boolean
+  }, ExtArgs["result"]["frasle"]>
+
+  export type frasleSelectScalar = {
+    codigo?: boolean
+    descripcion?: boolean
+    precio?: boolean
+    categoria?: boolean
+  }
+
+  export type frasleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"codigo" | "descripcion" | "precio" | "categoria", ExtArgs["result"]["frasle"]>
+
+  export type $fraslePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "frasle"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      codigo: string
+      descripcion: string
+      precio: Prisma.Decimal
+      categoria: string | null
+    }, ExtArgs["result"]["frasle"]>
+    composites: {}
+  }
+
+  type frasleGetPayload<S extends boolean | null | undefined | frasleDefaultArgs> = $Result.GetResult<Prisma.$fraslePayload, S>
+
+  type frasleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<frasleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FrasleCountAggregateInputType | true
+    }
+
+  export interface frasleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['frasle'], meta: { name: 'frasle' } }
+    /**
+     * Find zero or one Frasle that matches the filter.
+     * @param {frasleFindUniqueArgs} args - Arguments to find a Frasle
+     * @example
+     * // Get one Frasle
+     * const frasle = await prisma.frasle.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends frasleFindUniqueArgs>(args: SelectSubset<T, frasleFindUniqueArgs<ExtArgs>>): Prisma__frasleClient<$Result.GetResult<Prisma.$fraslePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Frasle that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {frasleFindUniqueOrThrowArgs} args - Arguments to find a Frasle
+     * @example
+     * // Get one Frasle
+     * const frasle = await prisma.frasle.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends frasleFindUniqueOrThrowArgs>(args: SelectSubset<T, frasleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__frasleClient<$Result.GetResult<Prisma.$fraslePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Frasle that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {frasleFindFirstArgs} args - Arguments to find a Frasle
+     * @example
+     * // Get one Frasle
+     * const frasle = await prisma.frasle.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends frasleFindFirstArgs>(args?: SelectSubset<T, frasleFindFirstArgs<ExtArgs>>): Prisma__frasleClient<$Result.GetResult<Prisma.$fraslePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Frasle that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {frasleFindFirstOrThrowArgs} args - Arguments to find a Frasle
+     * @example
+     * // Get one Frasle
+     * const frasle = await prisma.frasle.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends frasleFindFirstOrThrowArgs>(args?: SelectSubset<T, frasleFindFirstOrThrowArgs<ExtArgs>>): Prisma__frasleClient<$Result.GetResult<Prisma.$fraslePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Frasles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {frasleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Frasles
+     * const frasles = await prisma.frasle.findMany()
+     * 
+     * // Get first 10 Frasles
+     * const frasles = await prisma.frasle.findMany({ take: 10 })
+     * 
+     * // Only select the `codigo`
+     * const frasleWithCodigoOnly = await prisma.frasle.findMany({ select: { codigo: true } })
+     * 
+     */
+    findMany<T extends frasleFindManyArgs>(args?: SelectSubset<T, frasleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$fraslePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Frasle.
+     * @param {frasleCreateArgs} args - Arguments to create a Frasle.
+     * @example
+     * // Create one Frasle
+     * const Frasle = await prisma.frasle.create({
+     *   data: {
+     *     // ... data to create a Frasle
+     *   }
+     * })
+     * 
+     */
+    create<T extends frasleCreateArgs>(args: SelectSubset<T, frasleCreateArgs<ExtArgs>>): Prisma__frasleClient<$Result.GetResult<Prisma.$fraslePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Frasles.
+     * @param {frasleCreateManyArgs} args - Arguments to create many Frasles.
+     * @example
+     * // Create many Frasles
+     * const frasle = await prisma.frasle.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends frasleCreateManyArgs>(args?: SelectSubset<T, frasleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Frasles and returns the data saved in the database.
+     * @param {frasleCreateManyAndReturnArgs} args - Arguments to create many Frasles.
+     * @example
+     * // Create many Frasles
+     * const frasle = await prisma.frasle.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Frasles and only return the `codigo`
+     * const frasleWithCodigoOnly = await prisma.frasle.createManyAndReturn({
+     *   select: { codigo: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends frasleCreateManyAndReturnArgs>(args?: SelectSubset<T, frasleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$fraslePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Frasle.
+     * @param {frasleDeleteArgs} args - Arguments to delete one Frasle.
+     * @example
+     * // Delete one Frasle
+     * const Frasle = await prisma.frasle.delete({
+     *   where: {
+     *     // ... filter to delete one Frasle
+     *   }
+     * })
+     * 
+     */
+    delete<T extends frasleDeleteArgs>(args: SelectSubset<T, frasleDeleteArgs<ExtArgs>>): Prisma__frasleClient<$Result.GetResult<Prisma.$fraslePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Frasle.
+     * @param {frasleUpdateArgs} args - Arguments to update one Frasle.
+     * @example
+     * // Update one Frasle
+     * const frasle = await prisma.frasle.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends frasleUpdateArgs>(args: SelectSubset<T, frasleUpdateArgs<ExtArgs>>): Prisma__frasleClient<$Result.GetResult<Prisma.$fraslePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Frasles.
+     * @param {frasleDeleteManyArgs} args - Arguments to filter Frasles to delete.
+     * @example
+     * // Delete a few Frasles
+     * const { count } = await prisma.frasle.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends frasleDeleteManyArgs>(args?: SelectSubset<T, frasleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Frasles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {frasleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Frasles
+     * const frasle = await prisma.frasle.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends frasleUpdateManyArgs>(args: SelectSubset<T, frasleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Frasles and returns the data updated in the database.
+     * @param {frasleUpdateManyAndReturnArgs} args - Arguments to update many Frasles.
+     * @example
+     * // Update many Frasles
+     * const frasle = await prisma.frasle.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Frasles and only return the `codigo`
+     * const frasleWithCodigoOnly = await prisma.frasle.updateManyAndReturn({
+     *   select: { codigo: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends frasleUpdateManyAndReturnArgs>(args: SelectSubset<T, frasleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$fraslePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Frasle.
+     * @param {frasleUpsertArgs} args - Arguments to update or create a Frasle.
+     * @example
+     * // Update or create a Frasle
+     * const frasle = await prisma.frasle.upsert({
+     *   create: {
+     *     // ... data to create a Frasle
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Frasle we want to update
+     *   }
+     * })
+     */
+    upsert<T extends frasleUpsertArgs>(args: SelectSubset<T, frasleUpsertArgs<ExtArgs>>): Prisma__frasleClient<$Result.GetResult<Prisma.$fraslePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Frasles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {frasleCountArgs} args - Arguments to filter Frasles to count.
+     * @example
+     * // Count the number of Frasles
+     * const count = await prisma.frasle.count({
+     *   where: {
+     *     // ... the filter for the Frasles we want to count
+     *   }
+     * })
+    **/
+    count<T extends frasleCountArgs>(
+      args?: Subset<T, frasleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FrasleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Frasle.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FrasleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FrasleAggregateArgs>(args: Subset<T, FrasleAggregateArgs>): Prisma.PrismaPromise<GetFrasleAggregateType<T>>
+
+    /**
+     * Group by Frasle.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {frasleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends frasleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: frasleGroupByArgs['orderBy'] }
+        : { orderBy?: frasleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, frasleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFrasleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the frasle model
+   */
+  readonly fields: frasleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for frasle.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__frasleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the frasle model
+   */
+  interface frasleFieldRefs {
+    readonly codigo: FieldRef<"frasle", 'String'>
+    readonly descripcion: FieldRef<"frasle", 'String'>
+    readonly precio: FieldRef<"frasle", 'Decimal'>
+    readonly categoria: FieldRef<"frasle", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * frasle findUnique
+   */
+  export type frasleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the frasle
+     */
+    select?: frasleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the frasle
+     */
+    omit?: frasleOmit<ExtArgs> | null
+    /**
+     * Filter, which frasle to fetch.
+     */
+    where: frasleWhereUniqueInput
+  }
+
+  /**
+   * frasle findUniqueOrThrow
+   */
+  export type frasleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the frasle
+     */
+    select?: frasleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the frasle
+     */
+    omit?: frasleOmit<ExtArgs> | null
+    /**
+     * Filter, which frasle to fetch.
+     */
+    where: frasleWhereUniqueInput
+  }
+
+  /**
+   * frasle findFirst
+   */
+  export type frasleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the frasle
+     */
+    select?: frasleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the frasle
+     */
+    omit?: frasleOmit<ExtArgs> | null
+    /**
+     * Filter, which frasle to fetch.
+     */
+    where?: frasleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of frasles to fetch.
+     */
+    orderBy?: frasleOrderByWithRelationInput | frasleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for frasles.
+     */
+    cursor?: frasleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` frasles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` frasles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of frasles.
+     */
+    distinct?: FrasleScalarFieldEnum | FrasleScalarFieldEnum[]
+  }
+
+  /**
+   * frasle findFirstOrThrow
+   */
+  export type frasleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the frasle
+     */
+    select?: frasleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the frasle
+     */
+    omit?: frasleOmit<ExtArgs> | null
+    /**
+     * Filter, which frasle to fetch.
+     */
+    where?: frasleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of frasles to fetch.
+     */
+    orderBy?: frasleOrderByWithRelationInput | frasleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for frasles.
+     */
+    cursor?: frasleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` frasles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` frasles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of frasles.
+     */
+    distinct?: FrasleScalarFieldEnum | FrasleScalarFieldEnum[]
+  }
+
+  /**
+   * frasle findMany
+   */
+  export type frasleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the frasle
+     */
+    select?: frasleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the frasle
+     */
+    omit?: frasleOmit<ExtArgs> | null
+    /**
+     * Filter, which frasles to fetch.
+     */
+    where?: frasleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of frasles to fetch.
+     */
+    orderBy?: frasleOrderByWithRelationInput | frasleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing frasles.
+     */
+    cursor?: frasleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` frasles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` frasles.
+     */
+    skip?: number
+    distinct?: FrasleScalarFieldEnum | FrasleScalarFieldEnum[]
+  }
+
+  /**
+   * frasle create
+   */
+  export type frasleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the frasle
+     */
+    select?: frasleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the frasle
+     */
+    omit?: frasleOmit<ExtArgs> | null
+    /**
+     * The data needed to create a frasle.
+     */
+    data: XOR<frasleCreateInput, frasleUncheckedCreateInput>
+  }
+
+  /**
+   * frasle createMany
+   */
+  export type frasleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many frasles.
+     */
+    data: frasleCreateManyInput | frasleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * frasle createManyAndReturn
+   */
+  export type frasleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the frasle
+     */
+    select?: frasleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the frasle
+     */
+    omit?: frasleOmit<ExtArgs> | null
+    /**
+     * The data used to create many frasles.
+     */
+    data: frasleCreateManyInput | frasleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * frasle update
+   */
+  export type frasleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the frasle
+     */
+    select?: frasleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the frasle
+     */
+    omit?: frasleOmit<ExtArgs> | null
+    /**
+     * The data needed to update a frasle.
+     */
+    data: XOR<frasleUpdateInput, frasleUncheckedUpdateInput>
+    /**
+     * Choose, which frasle to update.
+     */
+    where: frasleWhereUniqueInput
+  }
+
+  /**
+   * frasle updateMany
+   */
+  export type frasleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update frasles.
+     */
+    data: XOR<frasleUpdateManyMutationInput, frasleUncheckedUpdateManyInput>
+    /**
+     * Filter which frasles to update
+     */
+    where?: frasleWhereInput
+    /**
+     * Limit how many frasles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * frasle updateManyAndReturn
+   */
+  export type frasleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the frasle
+     */
+    select?: frasleSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the frasle
+     */
+    omit?: frasleOmit<ExtArgs> | null
+    /**
+     * The data used to update frasles.
+     */
+    data: XOR<frasleUpdateManyMutationInput, frasleUncheckedUpdateManyInput>
+    /**
+     * Filter which frasles to update
+     */
+    where?: frasleWhereInput
+    /**
+     * Limit how many frasles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * frasle upsert
+   */
+  export type frasleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the frasle
+     */
+    select?: frasleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the frasle
+     */
+    omit?: frasleOmit<ExtArgs> | null
+    /**
+     * The filter to search for the frasle to update in case it exists.
+     */
+    where: frasleWhereUniqueInput
+    /**
+     * In case the frasle found by the `where` argument doesn't exist, create a new frasle with this data.
+     */
+    create: XOR<frasleCreateInput, frasleUncheckedCreateInput>
+    /**
+     * In case the frasle was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<frasleUpdateInput, frasleUncheckedUpdateInput>
+  }
+
+  /**
+   * frasle delete
+   */
+  export type frasleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the frasle
+     */
+    select?: frasleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the frasle
+     */
+    omit?: frasleOmit<ExtArgs> | null
+    /**
+     * Filter which frasle to delete.
+     */
+    where: frasleWhereUniqueInput
+  }
+
+  /**
+   * frasle deleteMany
+   */
+  export type frasleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which frasles to delete
+     */
+    where?: frasleWhereInput
+    /**
+     * Limit how many frasles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * frasle without action
+   */
+  export type frasleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the frasle
+     */
+    select?: frasleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the frasle
+     */
+    omit?: frasleOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -1895,10 +3015,21 @@ export namespace Prisma {
     codigo: 'codigo',
     descripcion: 'descripcion',
     precio: 'precio',
-    imagen: 'imagen'
+    imagen: 'imagen',
+    categoria: 'categoria'
   };
 
   export type MazfrenScalarFieldEnum = (typeof MazfrenScalarFieldEnum)[keyof typeof MazfrenScalarFieldEnum]
+
+
+  export const FrasleScalarFieldEnum: {
+    codigo: 'codigo',
+    descripcion: 'descripcion',
+    precio: 'precio',
+    categoria: 'categoria'
+  };
+
+  export type FrasleScalarFieldEnum = (typeof FrasleScalarFieldEnum)[keyof typeof FrasleScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -1983,6 +3114,7 @@ export namespace Prisma {
     descripcion?: StringFilter<"mazfren"> | string
     precio?: DecimalFilter<"mazfren"> | Decimal | DecimalJsLike | number | string
     imagen?: StringNullableFilter<"mazfren"> | string | null
+    categoria?: StringNullableFilter<"mazfren"> | string | null
   }
 
   export type mazfrenOrderByWithRelationInput = {
@@ -1990,6 +3122,7 @@ export namespace Prisma {
     descripcion?: SortOrder
     precio?: SortOrder
     imagen?: SortOrderInput | SortOrder
+    categoria?: SortOrderInput | SortOrder
   }
 
   export type mazfrenWhereUniqueInput = Prisma.AtLeast<{
@@ -2000,6 +3133,7 @@ export namespace Prisma {
     descripcion?: StringFilter<"mazfren"> | string
     precio?: DecimalFilter<"mazfren"> | Decimal | DecimalJsLike | number | string
     imagen?: StringNullableFilter<"mazfren"> | string | null
+    categoria?: StringNullableFilter<"mazfren"> | string | null
   }, "codigo">
 
   export type mazfrenOrderByWithAggregationInput = {
@@ -2007,6 +3141,7 @@ export namespace Prisma {
     descripcion?: SortOrder
     precio?: SortOrder
     imagen?: SortOrderInput | SortOrder
+    categoria?: SortOrderInput | SortOrder
     _count?: mazfrenCountOrderByAggregateInput
     _avg?: mazfrenAvgOrderByAggregateInput
     _max?: mazfrenMaxOrderByAggregateInput
@@ -2022,6 +3157,56 @@ export namespace Prisma {
     descripcion?: StringWithAggregatesFilter<"mazfren"> | string
     precio?: DecimalWithAggregatesFilter<"mazfren"> | Decimal | DecimalJsLike | number | string
     imagen?: StringNullableWithAggregatesFilter<"mazfren"> | string | null
+    categoria?: StringNullableWithAggregatesFilter<"mazfren"> | string | null
+  }
+
+  export type frasleWhereInput = {
+    AND?: frasleWhereInput | frasleWhereInput[]
+    OR?: frasleWhereInput[]
+    NOT?: frasleWhereInput | frasleWhereInput[]
+    codigo?: StringFilter<"frasle"> | string
+    descripcion?: StringFilter<"frasle"> | string
+    precio?: DecimalFilter<"frasle"> | Decimal | DecimalJsLike | number | string
+    categoria?: StringNullableFilter<"frasle"> | string | null
+  }
+
+  export type frasleOrderByWithRelationInput = {
+    codigo?: SortOrder
+    descripcion?: SortOrder
+    precio?: SortOrder
+    categoria?: SortOrderInput | SortOrder
+  }
+
+  export type frasleWhereUniqueInput = Prisma.AtLeast<{
+    codigo?: string
+    AND?: frasleWhereInput | frasleWhereInput[]
+    OR?: frasleWhereInput[]
+    NOT?: frasleWhereInput | frasleWhereInput[]
+    descripcion?: StringFilter<"frasle"> | string
+    precio?: DecimalFilter<"frasle"> | Decimal | DecimalJsLike | number | string
+    categoria?: StringNullableFilter<"frasle"> | string | null
+  }, "codigo">
+
+  export type frasleOrderByWithAggregationInput = {
+    codigo?: SortOrder
+    descripcion?: SortOrder
+    precio?: SortOrder
+    categoria?: SortOrderInput | SortOrder
+    _count?: frasleCountOrderByAggregateInput
+    _avg?: frasleAvgOrderByAggregateInput
+    _max?: frasleMaxOrderByAggregateInput
+    _min?: frasleMinOrderByAggregateInput
+    _sum?: frasleSumOrderByAggregateInput
+  }
+
+  export type frasleScalarWhereWithAggregatesInput = {
+    AND?: frasleScalarWhereWithAggregatesInput | frasleScalarWhereWithAggregatesInput[]
+    OR?: frasleScalarWhereWithAggregatesInput[]
+    NOT?: frasleScalarWhereWithAggregatesInput | frasleScalarWhereWithAggregatesInput[]
+    codigo?: StringWithAggregatesFilter<"frasle"> | string
+    descripcion?: StringWithAggregatesFilter<"frasle"> | string
+    precio?: DecimalWithAggregatesFilter<"frasle"> | Decimal | DecimalJsLike | number | string
+    categoria?: StringNullableWithAggregatesFilter<"frasle"> | string | null
   }
 
   export type mazfrenCreateInput = {
@@ -2029,6 +3214,7 @@ export namespace Prisma {
     descripcion: string
     precio: Decimal | DecimalJsLike | number | string
     imagen?: string | null
+    categoria?: string | null
   }
 
   export type mazfrenUncheckedCreateInput = {
@@ -2036,6 +3222,7 @@ export namespace Prisma {
     descripcion: string
     precio: Decimal | DecimalJsLike | number | string
     imagen?: string | null
+    categoria?: string | null
   }
 
   export type mazfrenUpdateInput = {
@@ -2043,6 +3230,7 @@ export namespace Prisma {
     descripcion?: StringFieldUpdateOperationsInput | string
     precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type mazfrenUncheckedUpdateInput = {
@@ -2050,6 +3238,7 @@ export namespace Prisma {
     descripcion?: StringFieldUpdateOperationsInput | string
     precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type mazfrenCreateManyInput = {
@@ -2057,6 +3246,7 @@ export namespace Prisma {
     descripcion: string
     precio: Decimal | DecimalJsLike | number | string
     imagen?: string | null
+    categoria?: string | null
   }
 
   export type mazfrenUpdateManyMutationInput = {
@@ -2064,6 +3254,7 @@ export namespace Prisma {
     descripcion?: StringFieldUpdateOperationsInput | string
     precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type mazfrenUncheckedUpdateManyInput = {
@@ -2071,6 +3262,56 @@ export namespace Prisma {
     descripcion?: StringFieldUpdateOperationsInput | string
     precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type frasleCreateInput = {
+    codigo: string
+    descripcion: string
+    precio: Decimal | DecimalJsLike | number | string
+    categoria?: string | null
+  }
+
+  export type frasleUncheckedCreateInput = {
+    codigo: string
+    descripcion: string
+    precio: Decimal | DecimalJsLike | number | string
+    categoria?: string | null
+  }
+
+  export type frasleUpdateInput = {
+    codigo?: StringFieldUpdateOperationsInput | string
+    descripcion?: StringFieldUpdateOperationsInput | string
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type frasleUncheckedUpdateInput = {
+    codigo?: StringFieldUpdateOperationsInput | string
+    descripcion?: StringFieldUpdateOperationsInput | string
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type frasleCreateManyInput = {
+    codigo: string
+    descripcion: string
+    precio: Decimal | DecimalJsLike | number | string
+    categoria?: string | null
+  }
+
+  export type frasleUpdateManyMutationInput = {
+    codigo?: StringFieldUpdateOperationsInput | string
+    descripcion?: StringFieldUpdateOperationsInput | string
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type frasleUncheckedUpdateManyInput = {
+    codigo?: StringFieldUpdateOperationsInput | string
+    descripcion?: StringFieldUpdateOperationsInput | string
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -2124,6 +3365,7 @@ export namespace Prisma {
     descripcion?: SortOrder
     precio?: SortOrder
     imagen?: SortOrder
+    categoria?: SortOrder
   }
 
   export type mazfrenAvgOrderByAggregateInput = {
@@ -2135,6 +3377,7 @@ export namespace Prisma {
     descripcion?: SortOrder
     precio?: SortOrder
     imagen?: SortOrder
+    categoria?: SortOrder
   }
 
   export type mazfrenMinOrderByAggregateInput = {
@@ -2142,6 +3385,7 @@ export namespace Prisma {
     descripcion?: SortOrder
     precio?: SortOrder
     imagen?: SortOrder
+    categoria?: SortOrder
   }
 
   export type mazfrenSumOrderByAggregateInput = {
@@ -2198,6 +3442,35 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type frasleCountOrderByAggregateInput = {
+    codigo?: SortOrder
+    descripcion?: SortOrder
+    precio?: SortOrder
+    categoria?: SortOrder
+  }
+
+  export type frasleAvgOrderByAggregateInput = {
+    precio?: SortOrder
+  }
+
+  export type frasleMaxOrderByAggregateInput = {
+    codigo?: SortOrder
+    descripcion?: SortOrder
+    precio?: SortOrder
+    categoria?: SortOrder
+  }
+
+  export type frasleMinOrderByAggregateInput = {
+    codigo?: SortOrder
+    descripcion?: SortOrder
+    precio?: SortOrder
+    categoria?: SortOrder
+  }
+
+  export type frasleSumOrderByAggregateInput = {
+    precio?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {

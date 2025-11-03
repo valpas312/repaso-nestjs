@@ -96,7 +96,15 @@ exports.Prisma.MazfrenScalarFieldEnum = {
   codigo: 'codigo',
   descripcion: 'descripcion',
   precio: 'precio',
-  imagen: 'imagen'
+  imagen: 'imagen',
+  categoria: 'categoria'
+};
+
+exports.Prisma.FrasleScalarFieldEnum = {
+  codigo: 'codigo',
+  descripcion: 'descripcion',
+  precio: 'precio',
+  categoria: 'categoria'
 };
 
 exports.Prisma.SortOrder = {
@@ -116,7 +124,8 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  mazfren: 'mazfren'
+  mazfren: 'mazfren',
+  frasle: 'frasle'
 };
 /**
  * Create the Client
@@ -166,13 +175,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator frasleClient {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/mazfren\"\n}\n\ndatasource frasle {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL_SAC\")\n}\n\nmodel mazfren {\n  codigo      String  @id @frasle.VarChar(10)\n  descripcion String\n  precio      Decimal @frasle.Decimal(12, 2)\n  imagen      String?\n}\n",
-  "inlineSchemaHash": "be5e090e81797c35efd9bb499e4a45d69f824a9c4fac66c37d72d76109b1238e",
+  "inlineSchema": "generator frasleClient {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/mazfren\"\n}\n\ndatasource frasle {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL_SAC\")\n}\n\nmodel mazfren {\n  codigo      String  @id @frasle.VarChar(10)\n  descripcion String\n  precio      Decimal @frasle.Decimal(12, 2)\n  imagen      String?\n  categoria   String? @frasle.VarChar(100)\n}\n\nmodel frasle {\n  codigo      String  @id @frasle.VarChar(50)\n  descripcion String\n  precio      Decimal @frasle.Decimal(12, 2)\n  categoria   String? @frasle.VarChar(100)\n}\n",
+  "inlineSchemaHash": "6790d162ee73817447eb956ce4599e803ae507f09ef742d276456427b39d4a02",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"mazfren\":{\"dbName\":null,\"schema\":null,\"fields\":[{\"name\":\"codigo\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":[\"VarChar\",[\"10\"]],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"descripcion\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"precio\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Decimal\",\"nativeType\":[\"Decimal\",[\"12\",\"2\"]],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"imagen\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"mazfren\":{\"dbName\":null,\"schema\":null,\"fields\":[{\"name\":\"codigo\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":[\"VarChar\",[\"10\"]],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"descripcion\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"precio\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Decimal\",\"nativeType\":[\"Decimal\",[\"12\",\"2\"]],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"imagen\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"categoria\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":[\"VarChar\",[\"100\"]],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"frasle\":{\"dbName\":null,\"schema\":null,\"fields\":[{\"name\":\"codigo\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":[\"VarChar\",[\"50\"]],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"descripcion\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"precio\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Decimal\",\"nativeType\":[\"Decimal\",[\"12\",\"2\"]],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"categoria\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":[\"VarChar\",[\"100\"]],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = undefined
 config.compilerWasm = undefined

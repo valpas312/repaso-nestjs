@@ -124,7 +124,15 @@ exports.Prisma.MazfrenScalarFieldEnum = {
   codigo: 'codigo',
   descripcion: 'descripcion',
   precio: 'precio',
-  imagen: 'imagen'
+  imagen: 'imagen',
+  categoria: 'categoria'
+};
+
+exports.Prisma.FrasleScalarFieldEnum = {
+  codigo: 'codigo',
+  descripcion: 'descripcion',
+  precio: 'precio',
+  categoria: 'categoria'
 };
 
 exports.Prisma.SortOrder = {
@@ -144,7 +152,8 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  mazfren: 'mazfren'
+  mazfren: 'mazfren',
+  frasle: 'frasle'
 };
 
 /**

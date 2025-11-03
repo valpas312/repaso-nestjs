@@ -18,6 +18,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type frasle = $Result.DefaultSelection<Prisma.$fraslePayload>
+/**
+ * Model mazfren
+ * 
+ */
+export type mazfren = $Result.DefaultSelection<Prisma.$mazfrenPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -146,6 +151,16 @@ export class PrismaClient<
     * ```
     */
   get frasle(): Prisma.frasleDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.mazfren`: Exposes CRUD operations for the **mazfren** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Mazfrens
+    * const mazfrens = await prisma.mazfren.findMany()
+    * ```
+    */
+  get mazfren(): Prisma.mazfrenDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -204,8 +219,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.17.1
-   * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
+   * Prisma Client JS version: 6.18.0
+   * Query Engine version: 34b5a692b7bd79939a9a2c3ef97d816e749cda2f
    */
   export type PrismaVersion = {
     client: string
@@ -218,6 +233,7 @@ export namespace Prisma {
    */
 
 
+  export import Bytes = runtime.Bytes
   export import JsonObject = runtime.JsonObject
   export import JsonArray = runtime.JsonArray
   export import JsonValue = runtime.JsonValue
@@ -586,7 +602,8 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    frasle: 'frasle'
+    frasle: 'frasle',
+    mazfren: 'mazfren'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -605,7 +622,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "frasle"
+      modelProps: "frasle" | "mazfren"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -680,6 +697,80 @@ export namespace Prisma {
           count: {
             args: Prisma.frasleCountArgs<ExtArgs>
             result: $Utils.Optional<FrasleCountAggregateOutputType> | number
+          }
+        }
+      }
+      mazfren: {
+        payload: Prisma.$mazfrenPayload<ExtArgs>
+        fields: Prisma.mazfrenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.mazfrenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$mazfrenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.mazfrenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$mazfrenPayload>
+          }
+          findFirst: {
+            args: Prisma.mazfrenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$mazfrenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.mazfrenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$mazfrenPayload>
+          }
+          findMany: {
+            args: Prisma.mazfrenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$mazfrenPayload>[]
+          }
+          create: {
+            args: Prisma.mazfrenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$mazfrenPayload>
+          }
+          createMany: {
+            args: Prisma.mazfrenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.mazfrenCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$mazfrenPayload>[]
+          }
+          delete: {
+            args: Prisma.mazfrenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$mazfrenPayload>
+          }
+          update: {
+            args: Prisma.mazfrenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$mazfrenPayload>
+          }
+          deleteMany: {
+            args: Prisma.mazfrenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.mazfrenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.mazfrenUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$mazfrenPayload>[]
+          }
+          upsert: {
+            args: Prisma.mazfrenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$mazfrenPayload>
+          }
+          aggregate: {
+            args: Prisma.MazfrenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMazfren>
+          }
+          groupBy: {
+            args: Prisma.mazfrenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MazfrenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.mazfrenCountArgs<ExtArgs>
+            result: $Utils.Optional<MazfrenCountAggregateOutputType> | number
           }
         }
       }
@@ -780,6 +871,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     frasle?: frasleOmit
+    mazfren?: mazfrenOmit
   }
 
   /* Types for Logging */
@@ -873,29 +965,32 @@ export namespace Prisma {
   }
 
   export type FrasleAvgAggregateOutputType = {
-    precio: number | null
+    precio: Decimal | null
   }
 
   export type FrasleSumAggregateOutputType = {
-    precio: number | null
+    precio: Decimal | null
   }
 
   export type FrasleMinAggregateOutputType = {
     codigo: string | null
     descripcion: string | null
-    precio: number | null
+    precio: Decimal | null
+    categoria: string | null
   }
 
   export type FrasleMaxAggregateOutputType = {
     codigo: string | null
     descripcion: string | null
-    precio: number | null
+    precio: Decimal | null
+    categoria: string | null
   }
 
   export type FrasleCountAggregateOutputType = {
     codigo: number
     descripcion: number
     precio: number
+    categoria: number
     _all: number
   }
 
@@ -912,18 +1007,21 @@ export namespace Prisma {
     codigo?: true
     descripcion?: true
     precio?: true
+    categoria?: true
   }
 
   export type FrasleMaxAggregateInputType = {
     codigo?: true
     descripcion?: true
     precio?: true
+    categoria?: true
   }
 
   export type FrasleCountAggregateInputType = {
     codigo?: true
     descripcion?: true
     precio?: true
+    categoria?: true
     _all?: true
   }
 
@@ -1015,8 +1113,9 @@ export namespace Prisma {
 
   export type FrasleGroupByOutputType = {
     codigo: string
-    descripcion: string | null
-    precio: number
+    descripcion: string
+    precio: Decimal
+    categoria: string | null
     _count: FrasleCountAggregateOutputType | null
     _avg: FrasleAvgAggregateOutputType | null
     _sum: FrasleSumAggregateOutputType | null
@@ -1042,35 +1141,40 @@ export namespace Prisma {
     codigo?: boolean
     descripcion?: boolean
     precio?: boolean
+    categoria?: boolean
   }, ExtArgs["result"]["frasle"]>
 
   export type frasleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     codigo?: boolean
     descripcion?: boolean
     precio?: boolean
+    categoria?: boolean
   }, ExtArgs["result"]["frasle"]>
 
   export type frasleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     codigo?: boolean
     descripcion?: boolean
     precio?: boolean
+    categoria?: boolean
   }, ExtArgs["result"]["frasle"]>
 
   export type frasleSelectScalar = {
     codigo?: boolean
     descripcion?: boolean
     precio?: boolean
+    categoria?: boolean
   }
 
-  export type frasleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"codigo" | "descripcion" | "precio", ExtArgs["result"]["frasle"]>
+  export type frasleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"codigo" | "descripcion" | "precio" | "categoria", ExtArgs["result"]["frasle"]>
 
   export type $fraslePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "frasle"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       codigo: string
-      descripcion: string | null
-      precio: number
+      descripcion: string
+      precio: Prisma.Decimal
+      categoria: string | null
     }, ExtArgs["result"]["frasle"]>
     composites: {}
   }
@@ -1496,7 +1600,8 @@ export namespace Prisma {
   interface frasleFieldRefs {
     readonly codigo: FieldRef<"frasle", 'String'>
     readonly descripcion: FieldRef<"frasle", 'String'>
-    readonly precio: FieldRef<"frasle", 'Float'>
+    readonly precio: FieldRef<"frasle", 'Decimal'>
+    readonly categoria: FieldRef<"frasle", 'String'>
   }
     
 
@@ -1864,6 +1969,1035 @@ export namespace Prisma {
 
 
   /**
+   * Model mazfren
+   */
+
+  export type AggregateMazfren = {
+    _count: MazfrenCountAggregateOutputType | null
+    _avg: MazfrenAvgAggregateOutputType | null
+    _sum: MazfrenSumAggregateOutputType | null
+    _min: MazfrenMinAggregateOutputType | null
+    _max: MazfrenMaxAggregateOutputType | null
+  }
+
+  export type MazfrenAvgAggregateOutputType = {
+    precio: Decimal | null
+  }
+
+  export type MazfrenSumAggregateOutputType = {
+    precio: Decimal | null
+  }
+
+  export type MazfrenMinAggregateOutputType = {
+    codigo: string | null
+    descripcion: string | null
+    precio: Decimal | null
+    imagen: string | null
+    categoria: string | null
+  }
+
+  export type MazfrenMaxAggregateOutputType = {
+    codigo: string | null
+    descripcion: string | null
+    precio: Decimal | null
+    imagen: string | null
+    categoria: string | null
+  }
+
+  export type MazfrenCountAggregateOutputType = {
+    codigo: number
+    descripcion: number
+    precio: number
+    imagen: number
+    categoria: number
+    _all: number
+  }
+
+
+  export type MazfrenAvgAggregateInputType = {
+    precio?: true
+  }
+
+  export type MazfrenSumAggregateInputType = {
+    precio?: true
+  }
+
+  export type MazfrenMinAggregateInputType = {
+    codigo?: true
+    descripcion?: true
+    precio?: true
+    imagen?: true
+    categoria?: true
+  }
+
+  export type MazfrenMaxAggregateInputType = {
+    codigo?: true
+    descripcion?: true
+    precio?: true
+    imagen?: true
+    categoria?: true
+  }
+
+  export type MazfrenCountAggregateInputType = {
+    codigo?: true
+    descripcion?: true
+    precio?: true
+    imagen?: true
+    categoria?: true
+    _all?: true
+  }
+
+  export type MazfrenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which mazfren to aggregate.
+     */
+    where?: mazfrenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of mazfrens to fetch.
+     */
+    orderBy?: mazfrenOrderByWithRelationInput | mazfrenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: mazfrenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` mazfrens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` mazfrens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned mazfrens
+    **/
+    _count?: true | MazfrenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MazfrenAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MazfrenSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MazfrenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MazfrenMaxAggregateInputType
+  }
+
+  export type GetMazfrenAggregateType<T extends MazfrenAggregateArgs> = {
+        [P in keyof T & keyof AggregateMazfren]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMazfren[P]>
+      : GetScalarType<T[P], AggregateMazfren[P]>
+  }
+
+
+
+
+  export type mazfrenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: mazfrenWhereInput
+    orderBy?: mazfrenOrderByWithAggregationInput | mazfrenOrderByWithAggregationInput[]
+    by: MazfrenScalarFieldEnum[] | MazfrenScalarFieldEnum
+    having?: mazfrenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MazfrenCountAggregateInputType | true
+    _avg?: MazfrenAvgAggregateInputType
+    _sum?: MazfrenSumAggregateInputType
+    _min?: MazfrenMinAggregateInputType
+    _max?: MazfrenMaxAggregateInputType
+  }
+
+  export type MazfrenGroupByOutputType = {
+    codigo: string
+    descripcion: string
+    precio: Decimal
+    imagen: string | null
+    categoria: string | null
+    _count: MazfrenCountAggregateOutputType | null
+    _avg: MazfrenAvgAggregateOutputType | null
+    _sum: MazfrenSumAggregateOutputType | null
+    _min: MazfrenMinAggregateOutputType | null
+    _max: MazfrenMaxAggregateOutputType | null
+  }
+
+  type GetMazfrenGroupByPayload<T extends mazfrenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MazfrenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MazfrenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MazfrenGroupByOutputType[P]>
+            : GetScalarType<T[P], MazfrenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type mazfrenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    codigo?: boolean
+    descripcion?: boolean
+    precio?: boolean
+    imagen?: boolean
+    categoria?: boolean
+  }, ExtArgs["result"]["mazfren"]>
+
+  export type mazfrenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    codigo?: boolean
+    descripcion?: boolean
+    precio?: boolean
+    imagen?: boolean
+    categoria?: boolean
+  }, ExtArgs["result"]["mazfren"]>
+
+  export type mazfrenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    codigo?: boolean
+    descripcion?: boolean
+    precio?: boolean
+    imagen?: boolean
+    categoria?: boolean
+  }, ExtArgs["result"]["mazfren"]>
+
+  export type mazfrenSelectScalar = {
+    codigo?: boolean
+    descripcion?: boolean
+    precio?: boolean
+    imagen?: boolean
+    categoria?: boolean
+  }
+
+  export type mazfrenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"codigo" | "descripcion" | "precio" | "imagen" | "categoria", ExtArgs["result"]["mazfren"]>
+
+  export type $mazfrenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "mazfren"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      codigo: string
+      descripcion: string
+      precio: Prisma.Decimal
+      imagen: string | null
+      categoria: string | null
+    }, ExtArgs["result"]["mazfren"]>
+    composites: {}
+  }
+
+  type mazfrenGetPayload<S extends boolean | null | undefined | mazfrenDefaultArgs> = $Result.GetResult<Prisma.$mazfrenPayload, S>
+
+  type mazfrenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<mazfrenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MazfrenCountAggregateInputType | true
+    }
+
+  export interface mazfrenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['mazfren'], meta: { name: 'mazfren' } }
+    /**
+     * Find zero or one Mazfren that matches the filter.
+     * @param {mazfrenFindUniqueArgs} args - Arguments to find a Mazfren
+     * @example
+     * // Get one Mazfren
+     * const mazfren = await prisma.mazfren.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends mazfrenFindUniqueArgs>(args: SelectSubset<T, mazfrenFindUniqueArgs<ExtArgs>>): Prisma__mazfrenClient<$Result.GetResult<Prisma.$mazfrenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Mazfren that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {mazfrenFindUniqueOrThrowArgs} args - Arguments to find a Mazfren
+     * @example
+     * // Get one Mazfren
+     * const mazfren = await prisma.mazfren.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends mazfrenFindUniqueOrThrowArgs>(args: SelectSubset<T, mazfrenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__mazfrenClient<$Result.GetResult<Prisma.$mazfrenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Mazfren that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {mazfrenFindFirstArgs} args - Arguments to find a Mazfren
+     * @example
+     * // Get one Mazfren
+     * const mazfren = await prisma.mazfren.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends mazfrenFindFirstArgs>(args?: SelectSubset<T, mazfrenFindFirstArgs<ExtArgs>>): Prisma__mazfrenClient<$Result.GetResult<Prisma.$mazfrenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Mazfren that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {mazfrenFindFirstOrThrowArgs} args - Arguments to find a Mazfren
+     * @example
+     * // Get one Mazfren
+     * const mazfren = await prisma.mazfren.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends mazfrenFindFirstOrThrowArgs>(args?: SelectSubset<T, mazfrenFindFirstOrThrowArgs<ExtArgs>>): Prisma__mazfrenClient<$Result.GetResult<Prisma.$mazfrenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Mazfrens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {mazfrenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Mazfrens
+     * const mazfrens = await prisma.mazfren.findMany()
+     * 
+     * // Get first 10 Mazfrens
+     * const mazfrens = await prisma.mazfren.findMany({ take: 10 })
+     * 
+     * // Only select the `codigo`
+     * const mazfrenWithCodigoOnly = await prisma.mazfren.findMany({ select: { codigo: true } })
+     * 
+     */
+    findMany<T extends mazfrenFindManyArgs>(args?: SelectSubset<T, mazfrenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$mazfrenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Mazfren.
+     * @param {mazfrenCreateArgs} args - Arguments to create a Mazfren.
+     * @example
+     * // Create one Mazfren
+     * const Mazfren = await prisma.mazfren.create({
+     *   data: {
+     *     // ... data to create a Mazfren
+     *   }
+     * })
+     * 
+     */
+    create<T extends mazfrenCreateArgs>(args: SelectSubset<T, mazfrenCreateArgs<ExtArgs>>): Prisma__mazfrenClient<$Result.GetResult<Prisma.$mazfrenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Mazfrens.
+     * @param {mazfrenCreateManyArgs} args - Arguments to create many Mazfrens.
+     * @example
+     * // Create many Mazfrens
+     * const mazfren = await prisma.mazfren.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends mazfrenCreateManyArgs>(args?: SelectSubset<T, mazfrenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Mazfrens and returns the data saved in the database.
+     * @param {mazfrenCreateManyAndReturnArgs} args - Arguments to create many Mazfrens.
+     * @example
+     * // Create many Mazfrens
+     * const mazfren = await prisma.mazfren.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Mazfrens and only return the `codigo`
+     * const mazfrenWithCodigoOnly = await prisma.mazfren.createManyAndReturn({
+     *   select: { codigo: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends mazfrenCreateManyAndReturnArgs>(args?: SelectSubset<T, mazfrenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$mazfrenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Mazfren.
+     * @param {mazfrenDeleteArgs} args - Arguments to delete one Mazfren.
+     * @example
+     * // Delete one Mazfren
+     * const Mazfren = await prisma.mazfren.delete({
+     *   where: {
+     *     // ... filter to delete one Mazfren
+     *   }
+     * })
+     * 
+     */
+    delete<T extends mazfrenDeleteArgs>(args: SelectSubset<T, mazfrenDeleteArgs<ExtArgs>>): Prisma__mazfrenClient<$Result.GetResult<Prisma.$mazfrenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Mazfren.
+     * @param {mazfrenUpdateArgs} args - Arguments to update one Mazfren.
+     * @example
+     * // Update one Mazfren
+     * const mazfren = await prisma.mazfren.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends mazfrenUpdateArgs>(args: SelectSubset<T, mazfrenUpdateArgs<ExtArgs>>): Prisma__mazfrenClient<$Result.GetResult<Prisma.$mazfrenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Mazfrens.
+     * @param {mazfrenDeleteManyArgs} args - Arguments to filter Mazfrens to delete.
+     * @example
+     * // Delete a few Mazfrens
+     * const { count } = await prisma.mazfren.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends mazfrenDeleteManyArgs>(args?: SelectSubset<T, mazfrenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Mazfrens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {mazfrenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Mazfrens
+     * const mazfren = await prisma.mazfren.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends mazfrenUpdateManyArgs>(args: SelectSubset<T, mazfrenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Mazfrens and returns the data updated in the database.
+     * @param {mazfrenUpdateManyAndReturnArgs} args - Arguments to update many Mazfrens.
+     * @example
+     * // Update many Mazfrens
+     * const mazfren = await prisma.mazfren.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Mazfrens and only return the `codigo`
+     * const mazfrenWithCodigoOnly = await prisma.mazfren.updateManyAndReturn({
+     *   select: { codigo: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends mazfrenUpdateManyAndReturnArgs>(args: SelectSubset<T, mazfrenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$mazfrenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Mazfren.
+     * @param {mazfrenUpsertArgs} args - Arguments to update or create a Mazfren.
+     * @example
+     * // Update or create a Mazfren
+     * const mazfren = await prisma.mazfren.upsert({
+     *   create: {
+     *     // ... data to create a Mazfren
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Mazfren we want to update
+     *   }
+     * })
+     */
+    upsert<T extends mazfrenUpsertArgs>(args: SelectSubset<T, mazfrenUpsertArgs<ExtArgs>>): Prisma__mazfrenClient<$Result.GetResult<Prisma.$mazfrenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Mazfrens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {mazfrenCountArgs} args - Arguments to filter Mazfrens to count.
+     * @example
+     * // Count the number of Mazfrens
+     * const count = await prisma.mazfren.count({
+     *   where: {
+     *     // ... the filter for the Mazfrens we want to count
+     *   }
+     * })
+    **/
+    count<T extends mazfrenCountArgs>(
+      args?: Subset<T, mazfrenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MazfrenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Mazfren.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MazfrenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MazfrenAggregateArgs>(args: Subset<T, MazfrenAggregateArgs>): Prisma.PrismaPromise<GetMazfrenAggregateType<T>>
+
+    /**
+     * Group by Mazfren.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {mazfrenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends mazfrenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: mazfrenGroupByArgs['orderBy'] }
+        : { orderBy?: mazfrenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, mazfrenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMazfrenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the mazfren model
+   */
+  readonly fields: mazfrenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for mazfren.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__mazfrenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the mazfren model
+   */
+  interface mazfrenFieldRefs {
+    readonly codigo: FieldRef<"mazfren", 'String'>
+    readonly descripcion: FieldRef<"mazfren", 'String'>
+    readonly precio: FieldRef<"mazfren", 'Decimal'>
+    readonly imagen: FieldRef<"mazfren", 'String'>
+    readonly categoria: FieldRef<"mazfren", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * mazfren findUnique
+   */
+  export type mazfrenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mazfren
+     */
+    select?: mazfrenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the mazfren
+     */
+    omit?: mazfrenOmit<ExtArgs> | null
+    /**
+     * Filter, which mazfren to fetch.
+     */
+    where: mazfrenWhereUniqueInput
+  }
+
+  /**
+   * mazfren findUniqueOrThrow
+   */
+  export type mazfrenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mazfren
+     */
+    select?: mazfrenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the mazfren
+     */
+    omit?: mazfrenOmit<ExtArgs> | null
+    /**
+     * Filter, which mazfren to fetch.
+     */
+    where: mazfrenWhereUniqueInput
+  }
+
+  /**
+   * mazfren findFirst
+   */
+  export type mazfrenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mazfren
+     */
+    select?: mazfrenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the mazfren
+     */
+    omit?: mazfrenOmit<ExtArgs> | null
+    /**
+     * Filter, which mazfren to fetch.
+     */
+    where?: mazfrenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of mazfrens to fetch.
+     */
+    orderBy?: mazfrenOrderByWithRelationInput | mazfrenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for mazfrens.
+     */
+    cursor?: mazfrenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` mazfrens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` mazfrens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of mazfrens.
+     */
+    distinct?: MazfrenScalarFieldEnum | MazfrenScalarFieldEnum[]
+  }
+
+  /**
+   * mazfren findFirstOrThrow
+   */
+  export type mazfrenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mazfren
+     */
+    select?: mazfrenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the mazfren
+     */
+    omit?: mazfrenOmit<ExtArgs> | null
+    /**
+     * Filter, which mazfren to fetch.
+     */
+    where?: mazfrenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of mazfrens to fetch.
+     */
+    orderBy?: mazfrenOrderByWithRelationInput | mazfrenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for mazfrens.
+     */
+    cursor?: mazfrenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` mazfrens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` mazfrens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of mazfrens.
+     */
+    distinct?: MazfrenScalarFieldEnum | MazfrenScalarFieldEnum[]
+  }
+
+  /**
+   * mazfren findMany
+   */
+  export type mazfrenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mazfren
+     */
+    select?: mazfrenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the mazfren
+     */
+    omit?: mazfrenOmit<ExtArgs> | null
+    /**
+     * Filter, which mazfrens to fetch.
+     */
+    where?: mazfrenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of mazfrens to fetch.
+     */
+    orderBy?: mazfrenOrderByWithRelationInput | mazfrenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing mazfrens.
+     */
+    cursor?: mazfrenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` mazfrens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` mazfrens.
+     */
+    skip?: number
+    distinct?: MazfrenScalarFieldEnum | MazfrenScalarFieldEnum[]
+  }
+
+  /**
+   * mazfren create
+   */
+  export type mazfrenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mazfren
+     */
+    select?: mazfrenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the mazfren
+     */
+    omit?: mazfrenOmit<ExtArgs> | null
+    /**
+     * The data needed to create a mazfren.
+     */
+    data: XOR<mazfrenCreateInput, mazfrenUncheckedCreateInput>
+  }
+
+  /**
+   * mazfren createMany
+   */
+  export type mazfrenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many mazfrens.
+     */
+    data: mazfrenCreateManyInput | mazfrenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * mazfren createManyAndReturn
+   */
+  export type mazfrenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mazfren
+     */
+    select?: mazfrenSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the mazfren
+     */
+    omit?: mazfrenOmit<ExtArgs> | null
+    /**
+     * The data used to create many mazfrens.
+     */
+    data: mazfrenCreateManyInput | mazfrenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * mazfren update
+   */
+  export type mazfrenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mazfren
+     */
+    select?: mazfrenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the mazfren
+     */
+    omit?: mazfrenOmit<ExtArgs> | null
+    /**
+     * The data needed to update a mazfren.
+     */
+    data: XOR<mazfrenUpdateInput, mazfrenUncheckedUpdateInput>
+    /**
+     * Choose, which mazfren to update.
+     */
+    where: mazfrenWhereUniqueInput
+  }
+
+  /**
+   * mazfren updateMany
+   */
+  export type mazfrenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update mazfrens.
+     */
+    data: XOR<mazfrenUpdateManyMutationInput, mazfrenUncheckedUpdateManyInput>
+    /**
+     * Filter which mazfrens to update
+     */
+    where?: mazfrenWhereInput
+    /**
+     * Limit how many mazfrens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * mazfren updateManyAndReturn
+   */
+  export type mazfrenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mazfren
+     */
+    select?: mazfrenSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the mazfren
+     */
+    omit?: mazfrenOmit<ExtArgs> | null
+    /**
+     * The data used to update mazfrens.
+     */
+    data: XOR<mazfrenUpdateManyMutationInput, mazfrenUncheckedUpdateManyInput>
+    /**
+     * Filter which mazfrens to update
+     */
+    where?: mazfrenWhereInput
+    /**
+     * Limit how many mazfrens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * mazfren upsert
+   */
+  export type mazfrenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mazfren
+     */
+    select?: mazfrenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the mazfren
+     */
+    omit?: mazfrenOmit<ExtArgs> | null
+    /**
+     * The filter to search for the mazfren to update in case it exists.
+     */
+    where: mazfrenWhereUniqueInput
+    /**
+     * In case the mazfren found by the `where` argument doesn't exist, create a new mazfren with this data.
+     */
+    create: XOR<mazfrenCreateInput, mazfrenUncheckedCreateInput>
+    /**
+     * In case the mazfren was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<mazfrenUpdateInput, mazfrenUncheckedUpdateInput>
+  }
+
+  /**
+   * mazfren delete
+   */
+  export type mazfrenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mazfren
+     */
+    select?: mazfrenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the mazfren
+     */
+    omit?: mazfrenOmit<ExtArgs> | null
+    /**
+     * Filter which mazfren to delete.
+     */
+    where: mazfrenWhereUniqueInput
+  }
+
+  /**
+   * mazfren deleteMany
+   */
+  export type mazfrenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which mazfrens to delete
+     */
+    where?: mazfrenWhereInput
+    /**
+     * Limit how many mazfrens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * mazfren without action
+   */
+  export type mazfrenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mazfren
+     */
+    select?: mazfrenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the mazfren
+     */
+    omit?: mazfrenOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -1880,10 +3014,22 @@ export namespace Prisma {
   export const FrasleScalarFieldEnum: {
     codigo: 'codigo',
     descripcion: 'descripcion',
-    precio: 'precio'
+    precio: 'precio',
+    categoria: 'categoria'
   };
 
   export type FrasleScalarFieldEnum = (typeof FrasleScalarFieldEnum)[keyof typeof FrasleScalarFieldEnum]
+
+
+  export const MazfrenScalarFieldEnum: {
+    codigo: 'codigo',
+    descripcion: 'descripcion',
+    precio: 'precio',
+    imagen: 'imagen',
+    categoria: 'categoria'
+  };
+
+  export type MazfrenScalarFieldEnum = (typeof MazfrenScalarFieldEnum)[keyof typeof MazfrenScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -1930,16 +3076,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Float'
+   * Reference to a field of type 'Decimal'
    */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
     
 
 
   /**
-   * Reference to a field of type 'Float[]'
+   * Reference to a field of type 'Decimal[]'
    */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
     
 
 
@@ -1965,14 +3111,16 @@ export namespace Prisma {
     OR?: frasleWhereInput[]
     NOT?: frasleWhereInput | frasleWhereInput[]
     codigo?: StringFilter<"frasle"> | string
-    descripcion?: StringNullableFilter<"frasle"> | string | null
-    precio?: FloatFilter<"frasle"> | number
+    descripcion?: StringFilter<"frasle"> | string
+    precio?: DecimalFilter<"frasle"> | Decimal | DecimalJsLike | number | string
+    categoria?: StringNullableFilter<"frasle"> | string | null
   }
 
   export type frasleOrderByWithRelationInput = {
     codigo?: SortOrder
-    descripcion?: SortOrderInput | SortOrder
+    descripcion?: SortOrder
     precio?: SortOrder
+    categoria?: SortOrderInput | SortOrder
   }
 
   export type frasleWhereUniqueInput = Prisma.AtLeast<{
@@ -1980,14 +3128,16 @@ export namespace Prisma {
     AND?: frasleWhereInput | frasleWhereInput[]
     OR?: frasleWhereInput[]
     NOT?: frasleWhereInput | frasleWhereInput[]
-    descripcion?: StringNullableFilter<"frasle"> | string | null
-    precio?: FloatFilter<"frasle"> | number
+    descripcion?: StringFilter<"frasle"> | string
+    precio?: DecimalFilter<"frasle"> | Decimal | DecimalJsLike | number | string
+    categoria?: StringNullableFilter<"frasle"> | string | null
   }, "codigo">
 
   export type frasleOrderByWithAggregationInput = {
     codigo?: SortOrder
-    descripcion?: SortOrderInput | SortOrder
+    descripcion?: SortOrder
     precio?: SortOrder
+    categoria?: SortOrderInput | SortOrder
     _count?: frasleCountOrderByAggregateInput
     _avg?: frasleAvgOrderByAggregateInput
     _max?: frasleMaxOrderByAggregateInput
@@ -2000,50 +3150,168 @@ export namespace Prisma {
     OR?: frasleScalarWhereWithAggregatesInput[]
     NOT?: frasleScalarWhereWithAggregatesInput | frasleScalarWhereWithAggregatesInput[]
     codigo?: StringWithAggregatesFilter<"frasle"> | string
-    descripcion?: StringNullableWithAggregatesFilter<"frasle"> | string | null
-    precio?: FloatWithAggregatesFilter<"frasle"> | number
+    descripcion?: StringWithAggregatesFilter<"frasle"> | string
+    precio?: DecimalWithAggregatesFilter<"frasle"> | Decimal | DecimalJsLike | number | string
+    categoria?: StringNullableWithAggregatesFilter<"frasle"> | string | null
+  }
+
+  export type mazfrenWhereInput = {
+    AND?: mazfrenWhereInput | mazfrenWhereInput[]
+    OR?: mazfrenWhereInput[]
+    NOT?: mazfrenWhereInput | mazfrenWhereInput[]
+    codigo?: StringFilter<"mazfren"> | string
+    descripcion?: StringFilter<"mazfren"> | string
+    precio?: DecimalFilter<"mazfren"> | Decimal | DecimalJsLike | number | string
+    imagen?: StringNullableFilter<"mazfren"> | string | null
+    categoria?: StringNullableFilter<"mazfren"> | string | null
+  }
+
+  export type mazfrenOrderByWithRelationInput = {
+    codigo?: SortOrder
+    descripcion?: SortOrder
+    precio?: SortOrder
+    imagen?: SortOrderInput | SortOrder
+    categoria?: SortOrderInput | SortOrder
+  }
+
+  export type mazfrenWhereUniqueInput = Prisma.AtLeast<{
+    codigo?: string
+    AND?: mazfrenWhereInput | mazfrenWhereInput[]
+    OR?: mazfrenWhereInput[]
+    NOT?: mazfrenWhereInput | mazfrenWhereInput[]
+    descripcion?: StringFilter<"mazfren"> | string
+    precio?: DecimalFilter<"mazfren"> | Decimal | DecimalJsLike | number | string
+    imagen?: StringNullableFilter<"mazfren"> | string | null
+    categoria?: StringNullableFilter<"mazfren"> | string | null
+  }, "codigo">
+
+  export type mazfrenOrderByWithAggregationInput = {
+    codigo?: SortOrder
+    descripcion?: SortOrder
+    precio?: SortOrder
+    imagen?: SortOrderInput | SortOrder
+    categoria?: SortOrderInput | SortOrder
+    _count?: mazfrenCountOrderByAggregateInput
+    _avg?: mazfrenAvgOrderByAggregateInput
+    _max?: mazfrenMaxOrderByAggregateInput
+    _min?: mazfrenMinOrderByAggregateInput
+    _sum?: mazfrenSumOrderByAggregateInput
+  }
+
+  export type mazfrenScalarWhereWithAggregatesInput = {
+    AND?: mazfrenScalarWhereWithAggregatesInput | mazfrenScalarWhereWithAggregatesInput[]
+    OR?: mazfrenScalarWhereWithAggregatesInput[]
+    NOT?: mazfrenScalarWhereWithAggregatesInput | mazfrenScalarWhereWithAggregatesInput[]
+    codigo?: StringWithAggregatesFilter<"mazfren"> | string
+    descripcion?: StringWithAggregatesFilter<"mazfren"> | string
+    precio?: DecimalWithAggregatesFilter<"mazfren"> | Decimal | DecimalJsLike | number | string
+    imagen?: StringNullableWithAggregatesFilter<"mazfren"> | string | null
+    categoria?: StringNullableWithAggregatesFilter<"mazfren"> | string | null
   }
 
   export type frasleCreateInput = {
     codigo: string
-    descripcion?: string | null
-    precio: number
+    descripcion: string
+    precio: Decimal | DecimalJsLike | number | string
+    categoria?: string | null
   }
 
   export type frasleUncheckedCreateInput = {
     codigo: string
-    descripcion?: string | null
-    precio: number
+    descripcion: string
+    precio: Decimal | DecimalJsLike | number | string
+    categoria?: string | null
   }
 
   export type frasleUpdateInput = {
     codigo?: StringFieldUpdateOperationsInput | string
-    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
-    precio?: FloatFieldUpdateOperationsInput | number
+    descripcion?: StringFieldUpdateOperationsInput | string
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type frasleUncheckedUpdateInput = {
     codigo?: StringFieldUpdateOperationsInput | string
-    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
-    precio?: FloatFieldUpdateOperationsInput | number
+    descripcion?: StringFieldUpdateOperationsInput | string
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type frasleCreateManyInput = {
     codigo: string
-    descripcion?: string | null
-    precio: number
+    descripcion: string
+    precio: Decimal | DecimalJsLike | number | string
+    categoria?: string | null
   }
 
   export type frasleUpdateManyMutationInput = {
     codigo?: StringFieldUpdateOperationsInput | string
-    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
-    precio?: FloatFieldUpdateOperationsInput | number
+    descripcion?: StringFieldUpdateOperationsInput | string
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type frasleUncheckedUpdateManyInput = {
     codigo?: StringFieldUpdateOperationsInput | string
-    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
-    precio?: FloatFieldUpdateOperationsInput | number
+    descripcion?: StringFieldUpdateOperationsInput | string
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type mazfrenCreateInput = {
+    codigo: string
+    descripcion: string
+    precio: Decimal | DecimalJsLike | number | string
+    imagen?: string | null
+    categoria?: string | null
+  }
+
+  export type mazfrenUncheckedCreateInput = {
+    codigo: string
+    descripcion: string
+    precio: Decimal | DecimalJsLike | number | string
+    imagen?: string | null
+    categoria?: string | null
+  }
+
+  export type mazfrenUpdateInput = {
+    codigo?: StringFieldUpdateOperationsInput | string
+    descripcion?: StringFieldUpdateOperationsInput | string
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type mazfrenUncheckedUpdateInput = {
+    codigo?: StringFieldUpdateOperationsInput | string
+    descripcion?: StringFieldUpdateOperationsInput | string
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type mazfrenCreateManyInput = {
+    codigo: string
+    descripcion: string
+    precio: Decimal | DecimalJsLike | number | string
+    imagen?: string | null
+    categoria?: string | null
+  }
+
+  export type mazfrenUpdateManyMutationInput = {
+    codigo?: StringFieldUpdateOperationsInput | string
+    descripcion?: StringFieldUpdateOperationsInput | string
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type mazfrenUncheckedUpdateManyInput = {
+    codigo?: StringFieldUpdateOperationsInput | string
+    descripcion?: StringFieldUpdateOperationsInput | string
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -2061,6 +3329,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type DecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -2076,17 +3355,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -2096,6 +3364,7 @@ export namespace Prisma {
     codigo?: SortOrder
     descripcion?: SortOrder
     precio?: SortOrder
+    categoria?: SortOrder
   }
 
   export type frasleAvgOrderByAggregateInput = {
@@ -2106,12 +3375,14 @@ export namespace Prisma {
     codigo?: SortOrder
     descripcion?: SortOrder
     precio?: SortOrder
+    categoria?: SortOrder
   }
 
   export type frasleMinOrderByAggregateInput = {
     codigo?: SortOrder
     descripcion?: SortOrder
     precio?: SortOrder
+    categoria?: SortOrder
   }
 
   export type frasleSumOrderByAggregateInput = {
@@ -2136,6 +3407,22 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -2154,36 +3441,52 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+  export type mazfrenCountOrderByAggregateInput = {
+    codigo?: SortOrder
+    descripcion?: SortOrder
+    precio?: SortOrder
+    imagen?: SortOrder
+    categoria?: SortOrder
+  }
+
+  export type mazfrenAvgOrderByAggregateInput = {
+    precio?: SortOrder
+  }
+
+  export type mazfrenMaxOrderByAggregateInput = {
+    codigo?: SortOrder
+    descripcion?: SortOrder
+    precio?: SortOrder
+    imagen?: SortOrder
+    categoria?: SortOrder
+  }
+
+  export type mazfrenMinOrderByAggregateInput = {
+    codigo?: SortOrder
+    descripcion?: SortOrder
+    precio?: SortOrder
+    imagen?: SortOrder
+    categoria?: SortOrder
+  }
+
+  export type mazfrenSumOrderByAggregateInput = {
+    precio?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
+  export type DecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
   }
 
-  export type FloatFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -2200,6 +3503,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedDecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -2212,17 +3526,6 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -2253,6 +3556,22 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -2279,22 +3598,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
   }
 
 

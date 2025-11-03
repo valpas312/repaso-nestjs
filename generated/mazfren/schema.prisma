@@ -13,4 +13,12 @@ model mazfren {
   descripcion String
   precio      Decimal @frasle.Decimal(12, 2)
   imagen      String?
+  categoria   String? @frasle.VarChar(100)
+}
+
+model frasle {
+  codigo      String  @id @frasle.VarChar(50)
+  descripcion String
+  precio      Decimal @frasle.Decimal(12, 2)
+  categoria   String? @frasle.VarChar(100)
 }
