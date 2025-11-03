@@ -204,8 +204,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.17.1
-   * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
+   * Prisma Client JS version: 6.18.0
+   * Query Engine version: 34b5a692b7bd79939a9a2c3ef97d816e749cda2f
    */
   export type PrismaVersion = {
     client: string
@@ -218,6 +218,7 @@ export namespace Prisma {
    */
 
 
+  export import Bytes = runtime.Bytes
   export import JsonObject = runtime.JsonObject
   export import JsonArray = runtime.JsonArray
   export import JsonValue = runtime.JsonValue
@@ -873,29 +874,32 @@ export namespace Prisma {
   }
 
   export type MazfrenAvgAggregateOutputType = {
-    precio: number | null
+    precio: Decimal | null
   }
 
   export type MazfrenSumAggregateOutputType = {
-    precio: number | null
+    precio: Decimal | null
   }
 
   export type MazfrenMinAggregateOutputType = {
     codigo: string | null
     descripcion: string | null
-    precio: number | null
+    precio: Decimal | null
+    imagen: string | null
   }
 
   export type MazfrenMaxAggregateOutputType = {
     codigo: string | null
     descripcion: string | null
-    precio: number | null
+    precio: Decimal | null
+    imagen: string | null
   }
 
   export type MazfrenCountAggregateOutputType = {
     codigo: number
     descripcion: number
     precio: number
+    imagen: number
     _all: number
   }
 
@@ -912,18 +916,21 @@ export namespace Prisma {
     codigo?: true
     descripcion?: true
     precio?: true
+    imagen?: true
   }
 
   export type MazfrenMaxAggregateInputType = {
     codigo?: true
     descripcion?: true
     precio?: true
+    imagen?: true
   }
 
   export type MazfrenCountAggregateInputType = {
     codigo?: true
     descripcion?: true
     precio?: true
+    imagen?: true
     _all?: true
   }
 
@@ -1015,8 +1022,9 @@ export namespace Prisma {
 
   export type MazfrenGroupByOutputType = {
     codigo: string
-    descripcion: string | null
-    precio: number
+    descripcion: string
+    precio: Decimal
+    imagen: string | null
     _count: MazfrenCountAggregateOutputType | null
     _avg: MazfrenAvgAggregateOutputType | null
     _sum: MazfrenSumAggregateOutputType | null
@@ -1042,35 +1050,40 @@ export namespace Prisma {
     codigo?: boolean
     descripcion?: boolean
     precio?: boolean
+    imagen?: boolean
   }, ExtArgs["result"]["mazfren"]>
 
   export type mazfrenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     codigo?: boolean
     descripcion?: boolean
     precio?: boolean
+    imagen?: boolean
   }, ExtArgs["result"]["mazfren"]>
 
   export type mazfrenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     codigo?: boolean
     descripcion?: boolean
     precio?: boolean
+    imagen?: boolean
   }, ExtArgs["result"]["mazfren"]>
 
   export type mazfrenSelectScalar = {
     codigo?: boolean
     descripcion?: boolean
     precio?: boolean
+    imagen?: boolean
   }
 
-  export type mazfrenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"codigo" | "descripcion" | "precio", ExtArgs["result"]["mazfren"]>
+  export type mazfrenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"codigo" | "descripcion" | "precio" | "imagen", ExtArgs["result"]["mazfren"]>
 
   export type $mazfrenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "mazfren"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       codigo: string
-      descripcion: string | null
-      precio: number
+      descripcion: string
+      precio: Prisma.Decimal
+      imagen: string | null
     }, ExtArgs["result"]["mazfren"]>
     composites: {}
   }
@@ -1496,7 +1509,8 @@ export namespace Prisma {
   interface mazfrenFieldRefs {
     readonly codigo: FieldRef<"mazfren", 'String'>
     readonly descripcion: FieldRef<"mazfren", 'String'>
-    readonly precio: FieldRef<"mazfren", 'Float'>
+    readonly precio: FieldRef<"mazfren", 'Decimal'>
+    readonly imagen: FieldRef<"mazfren", 'String'>
   }
     
 
@@ -1880,7 +1894,8 @@ export namespace Prisma {
   export const MazfrenScalarFieldEnum: {
     codigo: 'codigo',
     descripcion: 'descripcion',
-    precio: 'precio'
+    precio: 'precio',
+    imagen: 'imagen'
   };
 
   export type MazfrenScalarFieldEnum = (typeof MazfrenScalarFieldEnum)[keyof typeof MazfrenScalarFieldEnum]
@@ -1930,16 +1945,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Float'
+   * Reference to a field of type 'Decimal'
    */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
     
 
 
   /**
-   * Reference to a field of type 'Float[]'
+   * Reference to a field of type 'Decimal[]'
    */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
     
 
 
@@ -1965,14 +1980,16 @@ export namespace Prisma {
     OR?: mazfrenWhereInput[]
     NOT?: mazfrenWhereInput | mazfrenWhereInput[]
     codigo?: StringFilter<"mazfren"> | string
-    descripcion?: StringNullableFilter<"mazfren"> | string | null
-    precio?: FloatFilter<"mazfren"> | number
+    descripcion?: StringFilter<"mazfren"> | string
+    precio?: DecimalFilter<"mazfren"> | Decimal | DecimalJsLike | number | string
+    imagen?: StringNullableFilter<"mazfren"> | string | null
   }
 
   export type mazfrenOrderByWithRelationInput = {
     codigo?: SortOrder
-    descripcion?: SortOrderInput | SortOrder
+    descripcion?: SortOrder
     precio?: SortOrder
+    imagen?: SortOrderInput | SortOrder
   }
 
   export type mazfrenWhereUniqueInput = Prisma.AtLeast<{
@@ -1980,14 +1997,16 @@ export namespace Prisma {
     AND?: mazfrenWhereInput | mazfrenWhereInput[]
     OR?: mazfrenWhereInput[]
     NOT?: mazfrenWhereInput | mazfrenWhereInput[]
-    descripcion?: StringNullableFilter<"mazfren"> | string | null
-    precio?: FloatFilter<"mazfren"> | number
+    descripcion?: StringFilter<"mazfren"> | string
+    precio?: DecimalFilter<"mazfren"> | Decimal | DecimalJsLike | number | string
+    imagen?: StringNullableFilter<"mazfren"> | string | null
   }, "codigo">
 
   export type mazfrenOrderByWithAggregationInput = {
     codigo?: SortOrder
-    descripcion?: SortOrderInput | SortOrder
+    descripcion?: SortOrder
     precio?: SortOrder
+    imagen?: SortOrderInput | SortOrder
     _count?: mazfrenCountOrderByAggregateInput
     _avg?: mazfrenAvgOrderByAggregateInput
     _max?: mazfrenMaxOrderByAggregateInput
@@ -2000,50 +2019,58 @@ export namespace Prisma {
     OR?: mazfrenScalarWhereWithAggregatesInput[]
     NOT?: mazfrenScalarWhereWithAggregatesInput | mazfrenScalarWhereWithAggregatesInput[]
     codigo?: StringWithAggregatesFilter<"mazfren"> | string
-    descripcion?: StringNullableWithAggregatesFilter<"mazfren"> | string | null
-    precio?: FloatWithAggregatesFilter<"mazfren"> | number
+    descripcion?: StringWithAggregatesFilter<"mazfren"> | string
+    precio?: DecimalWithAggregatesFilter<"mazfren"> | Decimal | DecimalJsLike | number | string
+    imagen?: StringNullableWithAggregatesFilter<"mazfren"> | string | null
   }
 
   export type mazfrenCreateInput = {
     codigo: string
-    descripcion?: string | null
-    precio: number
+    descripcion: string
+    precio: Decimal | DecimalJsLike | number | string
+    imagen?: string | null
   }
 
   export type mazfrenUncheckedCreateInput = {
     codigo: string
-    descripcion?: string | null
-    precio: number
+    descripcion: string
+    precio: Decimal | DecimalJsLike | number | string
+    imagen?: string | null
   }
 
   export type mazfrenUpdateInput = {
     codigo?: StringFieldUpdateOperationsInput | string
-    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
-    precio?: FloatFieldUpdateOperationsInput | number
+    descripcion?: StringFieldUpdateOperationsInput | string
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type mazfrenUncheckedUpdateInput = {
     codigo?: StringFieldUpdateOperationsInput | string
-    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
-    precio?: FloatFieldUpdateOperationsInput | number
+    descripcion?: StringFieldUpdateOperationsInput | string
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type mazfrenCreateManyInput = {
     codigo: string
-    descripcion?: string | null
-    precio: number
+    descripcion: string
+    precio: Decimal | DecimalJsLike | number | string
+    imagen?: string | null
   }
 
   export type mazfrenUpdateManyMutationInput = {
     codigo?: StringFieldUpdateOperationsInput | string
-    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
-    precio?: FloatFieldUpdateOperationsInput | number
+    descripcion?: StringFieldUpdateOperationsInput | string
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type mazfrenUncheckedUpdateManyInput = {
     codigo?: StringFieldUpdateOperationsInput | string
-    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
-    precio?: FloatFieldUpdateOperationsInput | number
+    descripcion?: StringFieldUpdateOperationsInput | string
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -2061,6 +2088,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type DecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -2076,17 +2114,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -2096,6 +2123,7 @@ export namespace Prisma {
     codigo?: SortOrder
     descripcion?: SortOrder
     precio?: SortOrder
+    imagen?: SortOrder
   }
 
   export type mazfrenAvgOrderByAggregateInput = {
@@ -2106,12 +2134,14 @@ export namespace Prisma {
     codigo?: SortOrder
     descripcion?: SortOrder
     precio?: SortOrder
+    imagen?: SortOrder
   }
 
   export type mazfrenMinOrderByAggregateInput = {
     codigo?: SortOrder
     descripcion?: SortOrder
     precio?: SortOrder
+    imagen?: SortOrder
   }
 
   export type mazfrenSumOrderByAggregateInput = {
@@ -2136,6 +2166,22 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -2154,36 +2200,20 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
+  export type DecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
   }
 
-  export type FloatFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -2200,6 +2230,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedDecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -2212,17 +2253,6 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -2253,6 +2283,22 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -2279,22 +2325,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
   }
 
 

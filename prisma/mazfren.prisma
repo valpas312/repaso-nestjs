@@ -9,7 +9,8 @@ datasource frasle {
 }
 
 model mazfren {
-  codigo      String  @id
-  descripcion String?
-  precio      Float
+  codigo      String  @id @frasle.VarChar(10)
+  descripcion String
+  precio      Decimal @frasle.Decimal(12, 2)
+  imagen      String?
 }
